@@ -7,16 +7,12 @@ using Core;
 
 namespace Console
 {
-    public class Game : IGame
+    public class Game : Core.Game
     {
-        public List<User> Players { get; set; }
-
-
-        public Game(string player1, string player2)
+        public Game(string player1, string player2) : base(player1, player2)
         {
-            Players = new List<User>();
-            Players.Add(new User(player1));
-            Players.Add(new User(player2));
         }
+
+
     }
 }

@@ -9,13 +9,23 @@ namespace Core
     public enum Gender
     {
         Male,
-        Female
+        Female,
     }
 
+    public enum Hair
+    {
+        Ginger,
+        Black,
+    }
 
     public enum Question
     {
-        IsItAMan,
-        isItAWoman
+        // Gender
+        Man,
+        Woman,
+
+        // Hair
+        GingerHair,
+        BlackHair,
     }
 }

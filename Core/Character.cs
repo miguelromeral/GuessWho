@@ -8,29 +8,36 @@ namespace Core
 {
     public class Character
     {
-        public bool Visible { get; private set; }
+        public bool Discarded { get; private set; }
 
         public string Name { get; private set; }
 
         public Gender Gender { get; private set; }
 
+        public Hair Hair { get; private set; }
 
 
-        public Character(string n, Gender g)
+        public Character(string n, Gender g, Hair h)
         {
             Name = n;
             Gender = g;
+            Hair = h;
         }
 
 
 
-        public void VisibleOff()
+        internal void Off()
         {
-            Visible = false;
+            Discarded = true;
         }
-        public void VisibleOn()
+        internal void On()
         {
-            Visible = true;
+            Discarded = false;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
