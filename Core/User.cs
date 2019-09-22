@@ -10,15 +10,31 @@ namespace Core
     {
         public string Name { get; private set; }
         public Character Secret { get; private set; }
+        public Character Choosen { get; set; }
         public Board Board { get; private set; }
         public List<Question> Questions { get; private set; }
+        public AI Inteligence { get; private set; }
 
+        public int Remainders {
+            get {
+                if (Board.Characters == null)
+                    return -1;
 
-        public User(string n)
+                int count = 0;
+                foreach(var c in Board.Characters)
+                {
+                    if (!c.Discarded)
+                        count++;
+                }
+                return count;
+            }
+        }
+
+        public User(string n, AICategory level)
         {
             Name = n;
+            Inteligence = new AI(this, level);
             Board = new Board();
-            SetSelected();
             FillQuestions();
         }
 
@@ -29,9 +45,9 @@ namespace Core
                 Questions.Add(q);
         }
 
-        internal void SetSelected()
+        public void SetSecret(Character c)
         {
-            Secret = Board.GetRandomCharacter();
+            Secret = c;
         }
 
 

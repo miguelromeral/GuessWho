@@ -8,9 +8,8 @@ namespace Core
 {
     public class Board
     {
-
         public List<Character> Characters { get; private set; }
-
+        
 
         public Board()
         {
@@ -21,24 +20,11 @@ namespace Core
         internal void FillBoard()
         {
             Characters.Clear();
-            Characters.Add(new Character("Stephen", Gender.Male, Hair.Ginger));
-            Characters.Add(new Character("Isabelle", Gender.Female, Hair.Ginger));
-            Characters.Add(new Character("Max", Gender.Male, Hair.Black));
+            Characters.Add(new Character(Names.Stephen.ToString(), Gender.Male, Hair.Ginger));
+            Characters.Add(new Character(Names.Isabelle.ToString(), Gender.Female, Hair.Ginger));
+            //Characters.Add(new Character("Max", Gender.Male, Hair.Black));
         }
-
-
-        internal Character GetRandomCharacter()
-        {
-            try
-            {
-                return Characters.ElementAt(new Random().Next(Characters.Count));
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
+        
 
         internal int Discard(Question q, bool answer, bool perform = false)
         {

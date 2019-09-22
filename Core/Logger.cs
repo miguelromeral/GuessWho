@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core;
 
-namespace Console
+namespace Core
 {
-    public class Game : Core.Game
+    class Logger : ILogger
     {
-        public Game(string player1, string player2) : base(player1, player2)
+        public override void WriteToLog(string text)
         {
+            Console.WriteLine(text);
         }
-
-
     }
 }

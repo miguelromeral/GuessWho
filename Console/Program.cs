@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core;
 
 namespace Console
 {
@@ -10,8 +11,11 @@ namespace Console
     {
         static void Main(string[] args)
         {
-            Game game = new Game("Miguel", "Javi");
-            game.MakeQuestion(game.Players[0], Core.Question.Man);
+            var game = new Game();
+            var u1 = game.AddPlayer("Miguel", Core.AICategory.Random);
+            var u2 = game.AddPlayer("Javi", Core.AICategory.Random);
+
+            game.Play();
         }
     }
 }

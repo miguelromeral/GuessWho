@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Core
 {
+    public enum Names
+    {
+        Stephen,
+        Isabelle,
+        //Max,
+    }
+
     public enum Gender
     {
         Male,
@@ -18,6 +25,7 @@ namespace Core
         Black,
     }
 
+    // http://chalkdustmagazine.com/blog/cracking-guess-board-game/
     public enum Question
     {
         // Gender
@@ -27,5 +35,12 @@ namespace Core
         // Hair
         GingerHair,
         BlackHair,
+    }
+
+
+    public enum AICategory
+    {
+        Human = 0,
+        Random
     }
 }
