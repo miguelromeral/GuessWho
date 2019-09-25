@@ -20,9 +20,69 @@ namespace Core
         internal void FillBoard()
         {
             Characters.Clear();
-            Characters.Add(new Character(Names.Stephen.ToString(), Gender.Male, Hair.Ginger));
-            Characters.Add(new Character(Names.Isabelle.ToString(), Gender.Female, Hair.Ginger));
-            //Characters.Add(new Character("Max", Gender.Male, Hair.Black));
+            Characters.Add(new Character(
+                Names.Anne.ToString(),
+                Gender.Female,
+                HairColour.White,
+                HairStyle.Curly,
+                EyesColour.Blue,
+                FacialHair.None,
+                new[] {
+                    OthersAttributes.EarRings,
+                    OthersAttributes.Glasses
+                }.ToList()));
+            Characters.Add(new Character(
+                Names.Roger.ToString(),
+                Gender.Male,
+                HairColour.None,
+                HairStyle.Bald,
+                EyesColour.Brown,
+                FacialHair.Beard,
+                null));
+            Characters.Add(new Character(
+                Names.Paul.ToString(),
+                Gender.Male,
+                HairColour.White,
+                HairStyle.Partition,
+                EyesColour.Brown,
+                FacialHair.BillyGoat,
+                new[]
+                {
+                    OthersAttributes.Glasses
+                }.ToList()));
+            Characters.Add(new Character(
+                Names.Frank.ToString(),
+                Gender.Male,
+                HairColour.Black,
+                HairStyle.Hat,
+                EyesColour.Brown,
+                FacialHair.None,
+                new[] {
+                    OthersAttributes.BigMouth,
+                    OthersAttributes.BigNose,
+                }.ToList()));
+            Characters.Add(new Character(
+                Names.Max.ToString(),
+                Gender.Male,
+                HairColour.Black,
+                HairStyle.Curly,
+                EyesColour.Brown,
+                FacialHair.Beard,
+                new[] {
+                    OthersAttributes.BigMouth
+                }.ToList()));
+
+            Characters.Add(new Character(
+                Names.Stephen.ToString(),
+                Gender.Male,
+                HairColour.Ginger,
+                HairStyle.Partition, //??????
+                //new[] { FacialAttributes. }.ToList();
+                EyesColour.Blue,
+                FacialHair.Mustache,
+                null));
+
+            
         }
         
 

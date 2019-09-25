@@ -14,17 +14,24 @@ namespace Core
 
         public Gender Gender { get; private set; }
 
-        public Hair Hair { get; private set; }
+        public HairColour HairColour { get; private set; }
+        public HairStyle HairStyle { get; private set; }
+        public EyesColour EyesColour { get; private set; }
+        public FacialHair FacialHair { get; private set; }
+        public List<OthersAttributes> Others { get; private set; }
+        
 
-
-        public Character(string n, Gender g, Hair h)
+        public Character(string n, Gender g, HairColour hc, HairStyle hs, EyesColour ec, FacialHair fh, List<OthersAttributes> o) 
         {
             Name = n;
             Gender = g;
-            Hair = h;
+            HairColour = hc;
+            HairStyle = hs;
+            EyesColour = ec;
+            FacialHair = fh;
+            Others = o;
         }
-
-
+        
 
         internal void Off()
         {

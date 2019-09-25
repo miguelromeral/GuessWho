@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Core
 {
@@ -38,9 +40,9 @@ namespace Core
         {
             get
             {
-                foreach(User u in Players)
+                foreach (User u in Players)
                 {
-                    foreach(User r in Players)
+                    foreach (User r in Players)
                     {
                         if (u.Name != r.Name && u.Choosen == r.Secret)
                             return u;
@@ -80,9 +82,9 @@ namespace Core
             int i = Enum.GetNames(typeof(Names)).Length;
 
             Character c = u.Board.Characters[_seed.Next(u.Board.Characters.Count)];
-            foreach(User p in Players)
+            foreach (User p in Players)
             {
-                if(p.Name != u.Name && c == p.Secret)
+                if (p.Name != u.Name && c == p.Secret)
                 {
                     if (loop < 100)
                         return GetRandomSolution(u, ++loop);
@@ -109,14 +111,14 @@ namespace Core
                 PrintGame(true);
                 // Make Question
                 Question? question = current.Inteligence.ChooseQuestion();
-                if(question == null)
+                if (question == null)
                     goto endmove;
 
                 Logger.WriteToLog(String.Format("{0} is asking {1}.", current, question.ToString()));
                 MakeQuestion(current, question ?? default(Question));
 
                 // Choose selected
-                if(current.Inteligence.ShouldDoIAnswer(rival))
+                if (current.Inteligence.ShouldDoIAnswer(rival))
                 {
                     current.Choosen = current.Inteligence.GetChoosen();
                     if (current.Choosen == rival.Secret)
@@ -134,7 +136,7 @@ namespace Core
                 }
 
             } while (!endgame);
-            Logger.WriteToLog(String.Format("{0} has won in {1} moves!",Winner, (_turn+1)));
+            Logger.WriteToLog(String.Format("{0} has won in {1} moves!", Winner, (_turn + 1)));
             Console.ReadKey();
             return true;
         }
@@ -142,21 +144,22 @@ namespace Core
         public void PrintGame(bool showSecret = false)
         {
             string text = "+----------------------------------------------+" + Environment.NewLine;
-            foreach(var p in Players)
+            foreach (var p in Players)
             {
-                text += String.Format("| {0}",p.Name) + Environment.NewLine;
-                text += String.Format("| QA: {0}",p.Questions.Count) + Environment.NewLine;
-                text += "| \t ";
-                foreach(var q in p.Questions)
+                text += String.Format("| {0}", p.Name) + Environment.NewLine;
+                text += String.Format("| QA: {0}", p.Questions.Count) + Environment.NewLine;
+                //text += "| \t ";
+                foreach (var q in p.Questions)
                 {
-                    text += q + ", ";
+                    //text += GetFriendlyNameQuestion(q) + ", ";
+                    text += "| \t" + GetFriendlyNameQuestion(q) + Environment.NewLine;
                 }
                 text += Environment.NewLine;
                 text += String.Format("| Board: {0}", p.Remainders) + Environment.NewLine;
                 text += "| \t ";
                 foreach (var c in p.Board.Characters)
                 {
-                    if(!c.Discarded)
+                    if (!c.Discarded)
                         text += c + ", ";
                 }
                 text += Environment.NewLine;
@@ -186,7 +189,7 @@ namespace Core
                 return false;
 
             User rival = GetRivalByPlayer(player);
-            
+
             bool answer = rival.Answer(q);
             bool result = player.MakeMove(q, answer);
             player.Questions.Remove(q);
@@ -200,6 +203,20 @@ namespace Core
                 if (p != player)
                     return p;
             return null;
+        }
+        
+        public static string GetFriendlyNameQuestion(Question value)
+        {
+            try
+            {
+                FieldInfo fi = value.GetType().GetField(value.ToString());
+                var attribute = (DescriptionAttribute)fi.GetCustomAttribute(typeof(DescriptionAttribute));
+                return attribute.Description;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
         }
     }
 }
