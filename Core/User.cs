@@ -55,10 +55,21 @@ namespace Core
         {
             switch (q)
             {
-                case Question.Man:
+                case Question.Man_Gender:
                     return Secret.Gender == Gender.Male;
-                case Question.Woman:
+                case Question.Woman_Gender:
                     return Secret.Gender == Gender.Female;
+                case Question.Ginger_HairColour:
+                    return Secret.HairColour == HairColour.Ginger;
+                case Question.Black_HairColour:
+                    return Secret.HairColour == HairColour.Black;
+                case Question.WhiteHair_HairColour:
+                    return Secret.HairColour == HairColour.White;
+                case Question.BrownHair_HairColour:
+                    return Secret.HairColour == HairColour.Brown;
+                case Question.BlondHair_HairColour:
+                    return Secret.HairColour == HairColour.Blond;
+
                 default:
                     return false;
             }

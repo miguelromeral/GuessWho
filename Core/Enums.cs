@@ -89,22 +89,22 @@ namespace Core
     {
         // Gender
         [Description("Is it a man?")]
-        Man,
+        Man_Gender,
         [Description("Is it a woman?")]
-        Woman,
-
+        Woman_Gender,
+        
         // Hair Colour
-        [Description("TBD")]
+        [Description("Does it have ginger hair?")]
         Ginger_HairColour,
-        [Description("TBD")]
+        [Description("Does it have black hair?")]
         Black_HairColour,
-        [Description("TBD")]
+        [Description("Does it have white hair?")]
         WhiteHair_HairColour,
-        [Description("TBD")]
+        [Description("Does it have brown hair?")]
         BrownHair_HairColour,
-        [Description("TBD")]
+        [Description("Does it have blond hair?")]
         BlondHair_HairColour,
-
+        /*
         // Hair Style
         [Description("TBD")]
         PartitionHair_HairStyle,
@@ -145,7 +145,7 @@ namespace Core
         [Description("TBD")]
         BigNose_OtherAttribute,
         [Description("TBD")]
-        RedCheeks_OtherAttribute,
+        RedCheeks_OtherAttribute,*/
     }
 
 

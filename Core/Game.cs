@@ -44,13 +44,15 @@ namespace Core
                 {
                     foreach (User r in Players)
                     {
-                        if (u.Name != r.Name && u.Choosen == r.Secret)
+                        if(u.Choosen != null && u.Name != r.Name && u.Choosen.Name == r.Secret.Name)
                             return u;
                     }
                 }
                 return null;
             }
         }
+        public bool Finished { get { return Winner == null; } }
+
 
         public Game()
         {
@@ -68,6 +70,7 @@ namespace Core
 
                 User u = new User(name, level);
                 u.SetSecret(GetRandomSolution(u));
+                u.Board.Logger = Logger;
                 Players.Add(u);
                 return u;
             }
@@ -84,7 +87,7 @@ namespace Core
             Character c = u.Board.Characters[_seed.Next(u.Board.Characters.Count)];
             foreach (User p in Players)
             {
-                if (p.Name != u.Name && c == p.Secret)
+                if (p.Name != u.Name && c.Name == p.Secret.Name)
                 {
                     if (loop < 100)
                         return GetRandomSolution(u, ++loop);
@@ -95,51 +98,61 @@ namespace Core
             return c;
         }
 
-        public bool Play()
+        
+        /// <summary>
+        /// Indicates if the game can start or not.
+        /// </summary>
+        /// <returns></returns>
+        public bool Start()
         {
             if (!GameReady)
                 return false;
 
             _turn = 0;
+            return true;
+        }
+
+
+        public bool Play_Step()
+        {
+            if(Winner != null)
+            {
+                Logger.WriteToLog(String.Format("{0} has won in {1} moves!", Winner, (_turn + 1)));
+                return true;
+            }
+
             bool endgame = false;
             User current, rival;
 
-            do
+            current = Players[Turn];
+            rival = GetRivalByPlayer(current);
+            PrintGame(true);
+            // Make Question
+            Question? question = current.Inteligence.ChooseQuestion();
+            if (question == null)
+                goto endmove;
+
+            Logger.WriteToLog(String.Format("{0} is asking {1}.", current, GetFriendlyNameQuestion(question ?? default(Question))));
+            MakeQuestion(current, question ?? default(Question));
+
+            // Choose selected
+            if (current.Inteligence.ShouldDoIAnswer(rival))
             {
-                current = Players[Turn];
-                rival = GetRivalByPlayer(current);
-                PrintGame(true);
-                // Make Question
-                Question? question = current.Inteligence.ChooseQuestion();
-                if (question == null)
-                    goto endmove;
-
-                Logger.WriteToLog(String.Format("{0} is asking {1}.", current, question.ToString()));
-                MakeQuestion(current, question ?? default(Question));
-
-                // Choose selected
-                if (current.Inteligence.ShouldDoIAnswer(rival))
-                {
-                    current.Choosen = current.Inteligence.GetChoosen();
-                    if (current.Choosen == rival.Secret)
-                        endgame = true;
-                }
+                current.Choosen = current.Inteligence.GetChoosen();
+                if (current.Choosen.Name == rival.Secret.Name)
+                    endgame = true;
+            }
 
 
-            endmove:
-                if (!endgame)
-                {
-                    ClearPlayerMove(current);
-                    NextMove();
-
-                    Console.ReadKey();
-                }
-
-            } while (!endgame);
-            Logger.WriteToLog(String.Format("{0} has won in {1} moves!", Winner, (_turn + 1)));
-            Console.ReadKey();
-            return true;
+        endmove:
+            if (!endgame)
+            {
+                ClearPlayerMove(current);
+                NextMove();
+            }
+            return false;
         }
+
 
         public void PrintGame(bool showSecret = false)
         {

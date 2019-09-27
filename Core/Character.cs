@@ -46,23 +46,33 @@ namespace Core
         {
             return Name;
         }
-
-        #region OVERLOADED FUNCTIONS
-        public static bool operator ==(Character c1, Character c2)
-        {
-            if (c1.Name == c2.Name)
-                return true;
-            else
-                return false;
-        }
         
-        public static bool operator !=(Character c1, Character c2)
-        {
-            if (c1.Name != c2.Name)
-                return true;
-            else
-                return false;
-        }
-        #endregion
+        //#region OVERLOADED FUNCTIONS
+        //public static bool operator ==(Character c1, Character c2)
+        //{
+        //    /*if (c1 == null && c2 == null)
+        //        return true;
+        //    if (c1 == null || c2 == null)
+        //        return false;*/
+
+        //    if (c1.Name == c2.Name)
+        //        return true;
+        //    else
+        //        return false;
+        //}
+        
+        //public static bool operator !=(Character c1, Character c2)
+        //{
+        //    /*if (c1 == null && c2 == null)
+        //        return false;
+        //    if (c1 == null || c2 == null)
+        //        return true;*/
+                
+        //    if (c1.Name != c2.Name)
+        //        return true;
+        //    else
+        //        return false;
+        //}
+        //#endregion
     }
 }
