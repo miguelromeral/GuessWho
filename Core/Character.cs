@@ -170,6 +170,19 @@ namespace Core
             return res;
         }
 
+        public bool HasOtherAttribute(OthersAttributes other)
+        {
+            if (Others == null)
+                return false;
+
+            foreach(var o in Others)
+            {
+                if (o == other)
+                    return true;
+            }
+            return false;
+        }
+
         //#region OVERLOADED FUNCTIONS
         //public static bool operator ==(Character c1, Character c2)
         //{

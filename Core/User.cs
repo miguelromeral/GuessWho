@@ -42,12 +42,14 @@ namespace Core
         {
             Questions = new List<Question>();
             foreach (var q in (Question[])Enum.GetValues(typeof(Question)))
-                Questions.Add(q);
+                if(q != Question.None)
+                    Questions.Add(q);
         }
 
         public void SetSecret(Character c)
         {
             Secret = c;
+            Board.DiscardSingle(c);
         }
 
 

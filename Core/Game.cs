@@ -128,12 +128,12 @@ namespace Core
             rival = GetRivalByPlayer(current);
             PrintGame(true);
             // Make Question
-            Question? question = current.Inteligence.ChooseQuestion();
-            if (question == null)
+            Question question = current.Inteligence.ChooseQuestion();
+            if (question == Question.None)
                 goto endmove;
 
-            Logger.WriteToLog(String.Format("{0} is asking {1}.", current, GetFriendlyNameQuestion(question ?? default(Question))));
-            MakeQuestion(current, question ?? default(Question));
+            Logger.WriteToLog(String.Format("{0} is asking {1}.", current, GetFriendlyNameQuestion(question)));
+            MakeQuestion(current, question);
 
             // Choose selected
             if (current.Inteligence.ShouldDoIAnswer(rival))

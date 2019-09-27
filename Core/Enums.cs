@@ -87,6 +87,9 @@ namespace Core
     // http://chalkdustmagazine.com/blog/cracking-guess-board-game/
     public enum Question
     {
+        [Description("No question")]
+        None,
+
         // Gender
         [Description("Is it a man?")]
         Man_Gender,
@@ -104,48 +107,48 @@ namespace Core
         BrownHair_HairColour,
         [Description("Does it have blond hair?")]
         BlondHair_HairColour,
-        /*
+        
         // Hair Style
-        [Description("TBD")]
+        [Description("Does it have partition hair?")]
         PartitionHair_HairStyle,
-        [Description("TBD")]
+        [Description("Does it have curly hair?")]
         CurlyHair_HairStyle,
-        [Description("TBD")]
+        [Description("Does it wear a hat?")]
         HatHair_HairStyle,
-        [Description("TBD")]
+        [Description("Does it have a bald head?")]
         Bald_HairStyle,
-        [Description("TBD")]
+        [Description("Does it have stuff in its hair?")]
         Stuff_HairStyle,
-        [Description("TBD")]
+        [Description("Does it have long hair?")]
         LongHair_HairStyle,
-        */
+        
         // Eyes colour
         [Description("Does it have brown eyes?")]
         Brown_EyesColour,
         [Description("Does it habe blue eyes?")]
         Blue_EyesColour,
-        /*
+        
         // Facial hair
-        [Description("TBD")]
-        None_FacialHair,
-        [Description("TBD")]
+        //[Description("TBD")]
+        //None_FacialHair,
+        [Description("Does it have mustache?")]
         Mustache_FacialHair,
-        [Description("TBD")]
+        [Description("Does it have beard?")]
         Beard_FacialHair,
-        [Description("TBD")]
+        [Description("Does it have billy goat?")]
         BillyGoat_FacialHair,
-
+        
         // Other Attributes
-        [Description("TBD")]
+        [Description("Does it wear glasses?")]
         Glasses_OtherAttribute,
-        [Description("TBD")]
+        [Description("Does it wear ear rings?")]
         EarRings_OtherAttribute,
-        [Description("TBD")]
+        [Description("Does it have big mouth?")]
         BigMouth_OtherAttribute,
-        [Description("TBD")]
+        [Description("Does it have big nose?")]
         BigNose_OtherAttribute,
-        [Description("TBD")]
-        RedCheeks_OtherAttribute,*/
+        [Description("Does it have red cheeks?")]
+        RedCheeks_OtherAttribute,
     }
 
 

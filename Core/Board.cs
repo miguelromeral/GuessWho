@@ -257,6 +257,8 @@ namespace Core
                         }
                         
                         break;
+
+
                     case Question.Ginger_HairColour:
 
                         if (c.HairColour == HairColour.Ginger && !answer ||
@@ -266,7 +268,6 @@ namespace Core
                             discards++;
                         }
                         break;
-
                     case Question.Black_HairColour:
 
                         if (c.HairColour == HairColour.Black && !answer ||
@@ -276,7 +277,6 @@ namespace Core
                             discards++;
                         }
                         break;
-
                     case Question.WhiteHair_HairColour:
 
                         if (c.HairColour == HairColour.White && !answer ||
@@ -286,7 +286,6 @@ namespace Core
                             discards++;
                         }
                         break;
-
                     case Question.BrownHair_HairColour:
 
                         if (c.HairColour == HairColour.Brown && !answer ||
@@ -296,7 +295,6 @@ namespace Core
                             discards++;
                         }
                         break;
-
                     case Question.BlondHair_HairColour:
 
                         if (c.HairColour == HairColour.Blond && !answer ||
@@ -308,6 +306,61 @@ namespace Core
                         break;
 
 
+                    case Question.PartitionHair_HairStyle:
+
+                        if (c.HairStyle == HairStyle.Partition && !answer ||
+                            c.HairStyle != HairStyle.Partition && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.CurlyHair_HairStyle:
+
+                        if (c.HairStyle == HairStyle.Curly && !answer ||
+                            c.HairStyle != HairStyle.Curly && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.HatHair_HairStyle:
+
+                        if (c.HairStyle == HairStyle.Hat && !answer ||
+                            c.HairStyle != HairStyle.Hat && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.Bald_HairStyle:
+
+                        if (c.HairStyle == HairStyle.Bald && !answer ||
+                            c.HairStyle != HairStyle.Bald && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.Stuff_HairStyle:
+
+                        if (c.HairStyle == HairStyle.Stuff && !answer ||
+                            c.HairStyle != HairStyle.Stuff && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.LongHair_HairStyle:
+
+                        if (c.HairStyle == HairStyle.LongHair && !answer ||
+                            c.HairStyle != HairStyle.LongHair && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                        
 
                     case Question.Brown_EyesColour:
 
@@ -328,6 +381,72 @@ namespace Core
                         }
                         break;
 
+                    case Question.Mustache_FacialHair:
+                        if (c.FacialHair == FacialHair.Mustache && !answer ||
+                            c.FacialHair != FacialHair.Mustache && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.Beard_FacialHair:
+                        if (c.FacialHair == FacialHair.Beard && !answer ||
+                            c.FacialHair != FacialHair.Beard && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.BillyGoat_FacialHair:
+                        if (c.FacialHair == FacialHair.BillyGoat && !answer ||
+                            c.FacialHair != FacialHair.BillyGoat && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+
+                    case Question.Glasses_OtherAttribute:
+                        if (c.HasOtherAttribute(OthersAttributes.Glasses) && !answer ||
+                            !c.HasOtherAttribute(OthersAttributes.Glasses) && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.EarRings_OtherAttribute:
+                        if (c.HasOtherAttribute(OthersAttributes.EarRings) && !answer ||
+                            !c.HasOtherAttribute(OthersAttributes.EarRings) && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.BigMouth_OtherAttribute:
+                        if (c.HasOtherAttribute(OthersAttributes.BigMouth) && !answer ||
+                            !c.HasOtherAttribute(OthersAttributes.BigMouth) && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.BigNose_OtherAttribute:
+                        if (c.HasOtherAttribute(OthersAttributes.BigNose) && !answer ||
+                            !c.HasOtherAttribute(OthersAttributes.BigNose) && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.RedCheeks_OtherAttribute:
+                        if (c.HasOtherAttribute(OthersAttributes.RedCheeks) && !answer ||
+                            !c.HasOtherAttribute(OthersAttributes.RedCheeks) && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+
 
                     default:
                         return -1;
@@ -337,7 +456,7 @@ namespace Core
             return discards;
         }
 
-        private void DiscardSingle(Character c, bool perform)
+        internal void DiscardSingle(Character c, bool perform = true)
         {
             if (perform)
             {

@@ -35,12 +35,12 @@ namespace Core
             return null;
         }
 
-        public Question? ChooseQuestion()
+        public Question ChooseQuestion()
         {
             if (player.Questions == null || player.Questions.Count == 0)
-                return null;
+                return Question.None;
 
-            Question? choosen = null;
+            Question choosen = Question.None;
             switch (Level)
             {
                 case AICategory.Random:
