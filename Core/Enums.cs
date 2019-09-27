@@ -118,13 +118,13 @@ namespace Core
         Stuff_HairStyle,
         [Description("TBD")]
         LongHair_HairStyle,
-
+        */
         // Eyes colour
-        [Description("TBD")]
+        [Description("Does it have brown eyes?")]
         Brown_EyesColour,
-        [Description("TBD")]
+        [Description("Does it habe blue eyes?")]
         Blue_EyesColour,
-        
+        /*
         // Facial hair
         [Description("TBD")]
         None_FacialHair,

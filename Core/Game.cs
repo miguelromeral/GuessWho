@@ -163,7 +163,7 @@ namespace Core
                 text += String.Format("| {0}", p.Name);
                 if (showSecret)
                 {
-                    text += String.Format(" - [{0}]", p.Secret);
+                    text += String.Format(" - [{0}: {1}]", p.Secret, p.Secret.GetAttributes());
                 }
                 text += Environment.NewLine;
                 text += String.Format("| QA: {0}", p.Questions.Count) + Environment.NewLine;

@@ -70,6 +70,11 @@ namespace Core
                 case Question.BlondHair_HairColour:
                     return Secret.HairColour == HairColour.Blond;
 
+                case Question.Brown_EyesColour:
+                    return Secret.EyesColour == EyesColour.Brown;
+                case Question.Blue_EyesColour:
+                    return Secret.EyesColour == EyesColour.Blue;
+
                 default:
                     return false;
             }

@@ -307,6 +307,28 @@ namespace Core
                         }
                         break;
 
+
+
+                    case Question.Brown_EyesColour:
+
+                        if (c.EyesColour == EyesColour.Brown && !answer ||
+                            c.EyesColour != EyesColour.Brown && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+                    case Question.Blue_EyesColour:
+
+                        if (c.EyesColour == EyesColour.Blue && !answer ||
+                            c.EyesColour != EyesColour.Blue && answer)
+                        {
+                            DiscardSingle(c, perform);
+                            discards++;
+                        }
+                        break;
+
+
                     default:
                         return -1;
 
