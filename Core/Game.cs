@@ -156,10 +156,16 @@ namespace Core
 
         public void PrintGame(bool showSecret = false)
         {
-            string text = "+----------------------------------------------+" + Environment.NewLine;
+            string text = "";
             foreach (var p in Players)
             {
-                text += String.Format("| {0}", p.Name) + Environment.NewLine;
+                text += "+---------------------------------------------------------------------------------------+" + Environment.NewLine;
+                text += String.Format("| {0}", p.Name);
+                if (showSecret)
+                {
+                    text += String.Format(" - [{0}]", p.Secret);
+                }
+                text += Environment.NewLine;
                 text += String.Format("| QA: {0}", p.Questions.Count) + Environment.NewLine;
                 //text += "| \t ";
                 foreach (var q in p.Questions)
@@ -167,20 +173,18 @@ namespace Core
                     //text += GetFriendlyNameQuestion(q) + ", ";
                     text += "| \t" + GetFriendlyNameQuestion(q) + Environment.NewLine;
                 }
-                text += Environment.NewLine;
+                //text += Environment.NewLine;
                 text += String.Format("| Board: {0}", p.Remainders) + Environment.NewLine;
-                text += "| \t ";
-                foreach (var c in p.Board.Characters)
-                {
-                    if (!c.Discarded)
-                        text += c + ", ";
-                }
+                
+                //text += "| \t ";
+                //foreach (var c in p.Board.Characters)
+                //{
+                //    if (!c.Discarded)
+                //        text += c + ", ";
+                //}
+                text += p.Board.ToString();
+
                 text += Environment.NewLine;
-                if (showSecret)
-                {
-                    text += String.Format("| Secret {0}", p.Secret) + Environment.NewLine;
-                }
-                text += "+----------------------------------------------+" + Environment.NewLine;
             }
             Logger.WriteToLog(text);
         }

@@ -71,15 +71,6 @@ namespace Core
                 new[] {
                     OthersAttributes.BigMouth
                 }.ToList()));
-
-            Characters.Add(new Character(
-                Names.Stephen.ToString(),
-                Gender.Male,
-                HairColour.Ginger,
-                HairStyle.Partition,
-                EyesColour.Blue,
-                FacialHair.Mustache,
-                null));
             Characters.Add(new Character(
                 Names.Philippe.ToString(),
                 Gender.Male,
@@ -332,6 +323,37 @@ namespace Core
                     Logger.WriteToLog(c.Name+" has been discarded.");
                 c.Off();
             }
+        }
+
+        public override string ToString()
+        {
+            string res = "";
+            int lap = 0;
+            int max = 8;
+
+            res += "+---------------------------------------------------------------------------------------+" + Environment.NewLine;
+            foreach(var c in Characters)
+            {
+                if (lap == 0)
+                    res += "|";
+
+                if (c.Discarded)
+                    //res += String.Format(" -------- |");
+                    res += String.Format("          |");
+                else
+                    res += String.Format(" {0} |", c.Name.PadLeft(8));
+
+                lap++;
+
+                if (lap == max)
+                {
+                    res += Environment.NewLine;
+                    lap = 0;
+                }
+            }
+            res += "+---------------------------------------------------------------------------------------+" + Environment.NewLine;
+            
+            return res;
         }
     }
 }
