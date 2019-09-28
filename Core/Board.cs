@@ -226,6 +226,19 @@ namespace Core
         }
         
 
+        public Character GetCharacterByName(string name)
+        {
+            foreach(var c in Characters)
+            {
+                if(c.Name == name.ToString())
+                {
+                    return c;
+                }
+            }
+            return null;
+        }
+
+
         internal int Discard(Question q, bool answer, bool perform = false)
         {
             int discards = 0;
