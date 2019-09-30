@@ -16,6 +16,7 @@ namespace Forms
         public User Player { get; set; }
         public Character Character { get; set; }
         public Image Image { get; set; }
+        public Color Color { get; set; }
 
 
 
@@ -26,11 +27,11 @@ namespace Forms
             if (cb.Checked)
             {
                 cb.BackColor = Color.Transparent;
-                // Se está cogiendo la imagen original
                 cb.BackgroundImage = GUIUtilities.SetImageOpacity(Image, PERCENTAGE, 0.5F);
             }
             else
             {
+                cb.BackColor = Color;
                 cb.BackgroundImage = GUIUtilities.SetImageOpacity(Image, PERCENTAGE, 1F);
             }
         }

@@ -29,12 +29,12 @@ namespace Forms
             var u1 = Game.AddPlayer("Miguel", Core.AICategory.Random);
             var u2 = Game.AddPlayer("Javi", Core.AICategory.Random);
 
-            CreateButtons(lPlayer1, pPlayer1, bPlayer1, u1);
+            CreateButtons(lPlayer1, pPlayer1, bPlayer1, u1, Color.Blue);
 
             Game.Start();
         }
 
-        private void CreateButtons(Label lPlayer, Panel pPlayer, List<CheckBox> bPlayer, User user)
+        private void CreateButtons(Label lPlayer, Panel pPlayer, List<CheckBox> bPlayer, User user, Color color)
         {
             bPlayer = new List<CheckBox>();
             float perc = 1;
@@ -48,6 +48,8 @@ namespace Forms
                 CCheckBox b = new CCheckBox()
                 {
                     Player = user,
+                    BackColor = color,
+                    Color = color,
                     Character = user.Board.GetCharacterByName(n),
                     Image = myimage,
                     Name = user.Name + "_" + n,

@@ -42,91 +42,54 @@ namespace Forms
         private static string GetImageFromNameString(string name)
         {
             string path = Directory.GetCurrentDirectory() + "/Images/";
+            string file = "";
 
-            return path += "max.bmp";
+            switch (name)
+            {
+                case "Isabelle":
+                    path += "isabelle.png";
+                    break;
+                case "Max":
+                    path += "max.png";
+                    break;
+                case "Victor":
+                    path += "victor.png";
+                    break;
+                default:
+                    path += "unknown.png";
+                    break;
+            }
+            return path;
 
-            //switch (c.Color)
+
+            //try
             //{
-            //    case Card.CardColor.Bionic:
-            //        path += "bionic";
-            //        break;
-            //    case Card.CardColor.Blue:
-            //        path += "blue";
-            //        break;
-            //    case Card.CardColor.Green:
-            //        path += "green";
-            //        break;
-            //    case Card.CardColor.Red:
-            //        path += "red";
-            //        break;
-            //    case Card.CardColor.Yellow:
-            //        path += "yellow";
-            //        break;
-            //    case Card.CardColor.Wildcard:
-            //        path += "wild";
-            //        break;
-            //    case Card.CardColor.Purple:
-            //        switch (c.Face)
+            //    foreach (var n in Enum.GetNames(typeof(Names)))
+            //    {
+            //        if (n.ToString() == name)
             //        {
-            //            case Card.CardFace.LatexGlove:
-            //                path += "latexglove.bmp";
-            //                break;
-            //            case Card.CardFace.MedicalError:
-            //                path += "medicalerror.bmp";
-            //                break;
-            //            case Card.CardFace.OrganThief:
-            //                path += "organthief.bmp";
-            //                break;
-            //            case Card.CardFace.Overtime:
-            //                path += "overtime.bmp";
-            //                break;
-            //            case Card.CardFace.ProtectiveSuit:
-            //                path += "protectivesuit.bmp";
-            //                break;
-            //            case Card.CardFace.Quarantine:
-            //                path += "quarantine.bmp";
-            //                break;
-            //            case Card.CardFace.SecondOpinion:
-            //                path += "secondopinion.bmp";
-            //                break;
-            //            case Card.CardFace.Spreading:
-            //                path += "spreading.bmp";
-            //                break;
-            //            case Card.CardFace.Transplant:
-            //                path += "transplant.bmp";
-            //                break;
-            //            default:
-            //                path += "none.bmp";
-            //                break;
-            //        }
-            //        return path;
-            //    default:
-            //        path += "none.bmp";
-            //        return path;
-            //}
 
-            //switch (c.Face)
-            //{
-            //    case Card.CardFace.Organ:
-            //        path += "_organ.bmp";
-            //        break;
-            //    case Card.CardFace.Virus:
-            //        path += "_virus.bmp";
-            //        break;
-            //    case Card.CardFace.Medicine:
-            //        path += "_medicine.bmp";
-            //        break;
-            //    case Card.CardFace.EvolvedMedicine:
-            //        path += "_experimental.bmp";
-            //        break;
-            //    case Card.CardFace.EvolvedVirus:
-            //        path += "_evolvedvirus.bmp";
-            //        break;
-            //    default:
-            //        path += "none.bmp";
-            //        return path;
+
+
+            //            file = name.ToLower() + ".png";
+
+            //            if (Directory.Exists(path + file))
+            //            {
+            //                file = path + file;
+            //                return path;
+            //            }
+            //            else
+            //            {
+            //                throw new Exception("No image found");
+            //            }
+            //        }
+            //    }
+            //    return path + "unknown.png";
             //}
-            //return path;
+            //catch (Exception)
+            //{
+            //    return path + "unknown.png";
+            //}
         }
     }
 }
