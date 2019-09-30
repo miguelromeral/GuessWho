@@ -55,6 +55,69 @@ namespace Forms
                 case "Victor":
                     path += "victor.png";
                     break;
+                case "Eric":
+                    path += "eric.png";
+                    break;
+                case "Stephen":
+                    path += "stephen.png";
+                    break;
+                case "Charles":
+                    path += "charles.png";
+                    break;
+                case "Sophie":
+                    path += "sophie.png";
+                    break;
+                case "Anita":
+                    path += "anita.png";
+                    break;
+                case "Carmen":
+                    path += "Carmen.png";
+                    break;
+                case "Lucas":
+                    path += "lucas.png";
+                    break;
+                case "Marta":
+                    path += "marta.png";
+                    break;
+                case "Sarah":
+                    path += "sarah.png";
+                    break;
+                case "Theo":
+                    path += "theo.png";
+                    break;
+                case "Joe":
+                    path += "joe.png";
+                    break;
+                case "Hans":
+                    path += "hans.png";
+                    break;
+                case "Bernard":
+                    path += "bernard.png";
+                    break;
+                case "Daniel":
+                    path += "daniel.png";
+                    break;
+                case "Katrin":
+                    path += "katrin.png";
+                    break;
+                case "Philippe":
+                    path += "philippe.png";
+                    break;
+                case "Herman":
+                    path += "Herman.png";
+                    break;
+                case "Frank":
+                    path += "frank.png";
+                    break;
+                case "Paul":
+                    path += "paul.png";
+                    break;
+                case "Roger":
+                    path += "roger.png";
+                    break;
+                case "Anne":
+                    path += "anne.png";
+                    break;
                 default:
                     path += "unknown.png";
                     break;

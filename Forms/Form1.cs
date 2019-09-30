@@ -29,7 +29,10 @@ namespace Forms
             var u1 = Game.AddPlayer("Miguel", Core.AICategory.Random);
             var u2 = Game.AddPlayer("Javi", Core.AICategory.Random);
 
-            CreateButtons(lPlayer1, pPlayer1, bPlayer1, u1, Color.Blue);
+            var c1 = Color.FromArgb(255, 105, 105);
+            var c2 = Color.FromArgb(94, 164, 255);
+
+            CreateButtons(lPlayer1, pPlayer1, bPlayer1, u1, c1);
 
             Game.Start();
         }

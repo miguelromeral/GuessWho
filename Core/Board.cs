@@ -144,7 +144,7 @@ namespace Core
                 FacialHair.None,
                 new[] { OthersAttributes.EarRings, OthersAttributes.Glasses }.ToList()));
             Characters.Add(new Character(
-                Names.Maria.ToString(),
+                Names.Marta.ToString(),
                 Gender.Female,
                 HairColour.Brown,
                 HairStyle.Hat,
