@@ -15,58 +15,26 @@ namespace Forms
     {
 
         private FLogger Logger;
-        public Game Game;
-        private List<CheckBox> bPlayer1;
+        public CGame Game;
 
         public Form1()
         {
             InitializeComponent();
 
             Logger = new FLogger(this.infoText);
-            Game = new Game();
+            Game = new CGame();
             Game.Logger = Logger;
-
-            var u1 = Game.AddPlayer("Miguel", Core.AICategory.Random);
-            var u2 = Game.AddPlayer("Javi", Core.AICategory.Random);
-
-            var c1 = Color.FromArgb(255, 105, 105);
-            var c2 = Color.FromArgb(94, 164, 255);
-
-            CreateButtons(lPlayer1, pPlayer1, bPlayer1, u1, c1);
+            
+            CUser u1 = Game.AddPlayer("Miguel", Core.AICategory.Human, Color.FromArgb(255, 105, 105), pPlayer1);
+            CUser u2 = Game.AddPlayer("Javi", Core.AICategory.Random, Color.FromArgb(94, 164, 255), pPlayer2);
+            
+            u1.CreateButtons(lPlayer1);
+            u2.CreateButtons(lPlayer2);
 
             Game.Start();
         }
 
-        private void CreateButtons(Label lPlayer, Panel pPlayer, List<CheckBox> bPlayer, User user, Color color)
-        {
-            bPlayer = new List<CheckBox>();
-            float perc = 1;
-            int width = (int)(90 * CCheckBox.PERCENTAGE);
-            int height = (int)(130 * CCheckBox.PERCENTAGE);
-
-            foreach (var n in Enum.GetNames(typeof(Names)))
-            {
-                Image myimage =  GUIUtilities.GetImageFromName(n);
-
-                CCheckBox b = new CCheckBox()
-                {
-                    Player = user,
-                    BackColor = color,
-                    Color = color,
-                    Character = user.Board.GetCharacterByName(n),
-                    Image = myimage,
-                    Name = user.Name + "_" + n,
-                    BackgroundImage = myimage,
-                    Width = width,
-                    Height = height,
-                    Appearance = Appearance.Button
-                };
-                b.CheckedChanged += new System.EventHandler(b.SetTransparency);
-                b.BackgroundImage = new Bitmap(b.BackgroundImage, b.Width, b.Height);
-                bPlayer.Add(b);
-                pPlayer.Controls.Add(b);
-            }
-        }
+        
 
         private void bPass_Click(object sender, EventArgs e)
         {

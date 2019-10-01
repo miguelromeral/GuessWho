@@ -38,6 +38,7 @@ namespace Forms
         public static Image GetImageFromName(string name) {
             return new Bitmap(GetImageFromNameString(name));
         }
+        
 
         private static string GetImageFromNameString(string name)
         {

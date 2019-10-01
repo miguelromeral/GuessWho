@@ -80,7 +80,7 @@ namespace Core
             }
         }
 
-        private Character GetRandomSolution(User u, int loop = 0)
+        protected Character GetRandomSolution(User u, int loop = 0)
         {
             int i = Enum.GetNames(typeof(Names)).Length;
 

@@ -33,11 +33,15 @@
             this.lPlayer1 = new System.Windows.Forms.Label();
             this.bPass = new System.Windows.Forms.Button();
             this.infoText = new System.Windows.Forms.TextBox();
+            this.pPlayer2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lPlayer2 = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.lPlayer2);
+            this.mainPanel.Controls.Add(this.pPlayer2);
             this.mainPanel.Controls.Add(this.pPlayer1);
             this.mainPanel.Controls.Add(this.lPlayer1);
             this.mainPanel.Controls.Add(this.bPass);
@@ -89,12 +93,40 @@
             // 
             this.infoText.BackColor = System.Drawing.SystemColors.InfoText;
             this.infoText.ForeColor = System.Drawing.SystemColors.Info;
-            this.infoText.Location = new System.Drawing.Point(664, 352);
+            this.infoText.Location = new System.Drawing.Point(664, 101);
             this.infoText.Multiline = true;
             this.infoText.Name = "infoText";
             this.infoText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.infoText.Size = new System.Drawing.Size(445, 442);
             this.infoText.TabIndex = 0;
+            // 
+            // pPlayer2
+            // 
+            this.pPlayer2.ColumnCount = 6;
+            this.pPlayer2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66556F));
+            this.pPlayer2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66556F));
+            this.pPlayer2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66556F));
+            this.pPlayer2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66889F));
+            this.pPlayer2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66889F));
+            this.pPlayer2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66556F));
+            this.pPlayer2.Location = new System.Drawing.Point(1115, 101);
+            this.pPlayer2.Name = "pPlayer2";
+            this.pPlayer2.RowCount = 4;
+            this.pPlayer2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.pPlayer2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.pPlayer2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.pPlayer2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.pPlayer2.Size = new System.Drawing.Size(639, 629);
+            this.pPlayer2.TabIndex = 3;
+            // 
+            // lPlayer2
+            // 
+            this.lPlayer2.AutoSize = true;
+            this.lPlayer2.Location = new System.Drawing.Point(1688, 67);
+            this.lPlayer2.Name = "lPlayer2";
+            this.lPlayer2.Size = new System.Drawing.Size(51, 20);
+            this.lPlayer2.TabIndex = 4;
+            this.lPlayer2.Text = "label1";
             // 
             // Form1
             // 
@@ -117,6 +149,8 @@
         private System.Windows.Forms.Button bPass;
         private System.Windows.Forms.Label lPlayer1;
         private System.Windows.Forms.TableLayoutPanel pPlayer1;
+        private System.Windows.Forms.TableLayoutPanel pPlayer2;
+        private System.Windows.Forms.Label lPlayer2;
     }
 }
 

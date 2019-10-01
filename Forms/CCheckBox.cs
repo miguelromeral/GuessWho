@@ -9,7 +9,7 @@ using Core;
 
 namespace Forms
 {
-    internal class CCheckBox : CheckBox
+    public class CCheckBox : CheckBox
     {
         public static double PERCENTAGE = 1;
 
