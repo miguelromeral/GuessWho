@@ -18,6 +18,8 @@ namespace Forms
 
         public Panel Panel { get; set; }
 
+        public PictureBox Picture { get; set; }
+
         public CUser(string n, AICategory level, Color color, Panel panel) : base(n, level)
         {
             Color = color;
@@ -63,6 +65,24 @@ namespace Forms
                 Buttons.Add(b);
                 Panel.Controls.Add(b);
             }
+
+            Picture.Image = GUIUtilities.GetImageFromName(Secret.Name);
+        }
+        
+        public void UpdateButtons()
+        {
+            foreach(var b in Buttons)
+            {
+                if (b.Character.Discarded)
+                {
+                    b.BackgroundImage = null;
+                }
+            }
+        }
+
+        public void RemarkCharacters(Question question, bool answer)
+        {
+            // TODO
         }
     }
 }

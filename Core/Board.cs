@@ -219,7 +219,7 @@ namespace Core
                 Names.Victor.ToString(),
                 Gender.Male,
                 HairColour.White,
-                HairStyle.Bald,
+                HairStyle.Partition,
                 EyesColour.Brown,
                 FacialHair.None,
                 new[] { OthersAttributes.BigMouth }.ToList()));

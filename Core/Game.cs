@@ -14,7 +14,7 @@ namespace Core
         public static int MAX_PLAYERS = 2;
 
         public List<User> Players { get; set; }
-        private int _turn;
+        protected int _turn;
         public int Turn
         {
             get
@@ -53,6 +53,16 @@ namespace Core
         }
         public bool Finished { get { return Winner == null; } }
 
+        public bool HumanTurn
+        {
+            get
+            {
+                if (Players == null)
+                    return false;
+
+                return Players[Turn].Inteligence.Level == AICategory.Human;
+            }
+        }
 
         public Game()
         {
@@ -113,7 +123,7 @@ namespace Core
         }
 
 
-        public bool Play_Step()
+        public virtual bool Play_Step()
         {
             if(Winner != null)
             {
@@ -167,21 +177,14 @@ namespace Core
                 }
                 text += Environment.NewLine;
                 text += String.Format("| QA: {0}", p.Questions.Count) + Environment.NewLine;
-                //text += "| \t ";
-                foreach (var q in p.Questions)
-                {
-                    //text += GetFriendlyNameQuestion(q) + ", ";
-                    text += "| \t" + GetFriendlyNameQuestion(q) + Environment.NewLine;
-                }
-                //text += Environment.NewLine;
+                //foreach (var q in p.Questions)
+                //{
+                //    //text += GetFriendlyNameQuestion(q) + ", ";
+                //    text += "| \t" + GetFriendlyNameQuestion(q) + Environment.NewLine;
+                //}
+
                 text += String.Format("| Board: {0}", p.Remainders) + Environment.NewLine;
                 
-                //text += "| \t ";
-                //foreach (var c in p.Board.Characters)
-                //{
-                //    if (!c.Discarded)
-                //        text += c + ", ";
-                //}
                 text += p.Board.ToString();
 
                 text += Environment.NewLine;
@@ -189,7 +192,7 @@ namespace Core
             Logger.WriteToLog(text);
         }
 
-        private void NextMove()
+        protected void NextMove()
         {
             _turn++;
         }
@@ -214,14 +217,14 @@ namespace Core
         }
 
 
-        private User GetRivalByPlayer(User player)
+        protected User GetRivalByPlayer(User player)
         {
             foreach (var p in Players)
                 if (p != player)
                     return p;
             return null;
         }
-        
+
         public static string GetFriendlyNameQuestion(Question value)
         {
             try
@@ -234,6 +237,16 @@ namespace Core
             {
                 return "";
             }
+        }
+
+        public static Question GetQuestionByFriendlyName(string question)
+        {
+            foreach(Question q in (Question[]) Enum.GetValues(typeof(Question)))
+            {
+                if (question == GetFriendlyNameQuestion(q))
+                    return q;
+            }
+            return Question.None;
         }
     }
 }

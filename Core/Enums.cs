@@ -129,8 +129,8 @@ namespace Core
         Blue_EyesColour,
         
         // Facial hair
-        //[Description("TBD")]
-        //None_FacialHair,
+        [Description("Does it have shaved face?")]
+        None_FacialHair,
         [Description("Does it have mustache?")]
         Mustache_FacialHair,
         [Description("Does it have beard?")]
