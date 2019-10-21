@@ -81,6 +81,19 @@ namespace Forms
             }
         }
 
+        public List<Character> SelectedCharacters()
+        {
+            List<Character> checkes = new List<Character>();
+            foreach (var b in Buttons)
+            {
+                if (b.Checked)
+                {
+                    checkes.Add(b.Character);
+                }
+            }
+            return checkes;
+        }
+
         public void RemarkCharacters(List<Character> discards)
         {
             foreach(var b in Buttons)

@@ -192,7 +192,7 @@ namespace Core
             Logger.WriteToLog(text);
         }
 
-        protected void NextMove()
+        public void NextMove()
         {
             _turn++;
         }

@@ -49,6 +49,10 @@ namespace Forms
                 Game.Play_Step();
                 ChangeUserTurn();
             }
+            else
+            {
+                MessageBox.Show("It is a player move. Select characters to discard.");
+            }
         }
 
         void ChangeUserTurn()
@@ -60,8 +64,11 @@ namespace Forms
             
             UpdatePlayerQuestions(Current);
 
-            Rival.Panel.Visible = false;
+            Current.Panel.Visible = true;
+            Current.Picture.Visible = true;
+
             // THIS IS OK, but now for debugging i'm allowed to cheat ;)
+            //Rival.Panel.Visible = false;
             //Rival.Picture.Visible = false;
         }
 
@@ -74,6 +81,7 @@ namespace Forms
             {
                 cbQuestion.Items.Add(Core.Game.GetFriendlyNameQuestion(q));
             }
+            cbQuestion.Refresh();
         }
 
         private void bAsk_Click(object sender, EventArgs e)
@@ -99,7 +107,18 @@ namespace Forms
 
         private void bDiscard_Click(object sender, EventArgs e)
         {
-            // TODO
+            if (Current.MakeMove(Current.SelectedCharacters()))
+            {
+                Game.ClearPlayerMove(Current);
+                Game.ClearCheckedButtons(Current);
+                Game.NextMove();
+                Game.UpdatePlayersPanels();
+                ChangeUserTurn();
+            }
+            else
+            {
+                MessageBox.Show("You have to select, at least, one character.");
+            }
         }
     }
 }

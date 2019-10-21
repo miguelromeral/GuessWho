@@ -80,12 +80,21 @@ namespace Forms
         }
 
 
-        private void UpdatePlayersPanels()
+        public void UpdatePlayersPanels()
         {
             foreach(var p in Players)
             {
                 var ps = p as CUser;
                 ps.UpdateButtons();
+            }
+        }
+
+        public void ClearCheckedButtons(CUser user)
+        {
+            foreach(var b in user.Buttons)
+            {
+                if (b.Checked)
+                    b.Checked = false;
             }
         }
     }

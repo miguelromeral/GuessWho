@@ -121,6 +121,10 @@ namespace Core
         {
             return Board.Discard(q, answer, performs);
         }
+        public bool MakeMove(List<Character> Discards)
+        {
+            return Board.Discard(Discards);
+        }
 
         public override string ToString()
         {

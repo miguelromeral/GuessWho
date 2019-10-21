@@ -239,6 +239,20 @@ namespace Core
         }
 
 
+        internal bool Discard(List<Character> discards)
+        {
+            bool success = false;
+
+            foreach (var c in discards)
+            {
+                DiscardSingle(c);
+                success = true;
+            }
+            
+            return success;
+        }
+
+
         internal List<Character> Discard(Question q, bool answer, bool perform = false)
         {
             List<Character> discards = new List<Character>();
