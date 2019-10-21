@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.bDiscard = new System.Windows.Forms.Button();
+            this.bAsk = new System.Windows.Forms.Button();
+            this.cbQuestion = new System.Windows.Forms.ComboBox();
             this.pb2 = new System.Windows.Forms.PictureBox();
             this.pb1 = new System.Windows.Forms.PictureBox();
             this.lPlayer2 = new System.Windows.Forms.Label();
@@ -37,9 +40,7 @@
             this.lPlayer1 = new System.Windows.Forms.Label();
             this.bPass = new System.Windows.Forms.Button();
             this.infoText = new System.Windows.Forms.TextBox();
-            this.cbQuestion = new System.Windows.Forms.ComboBox();
-            this.bAsk = new System.Windows.Forms.Button();
-            this.bDiscard = new System.Windows.Forms.Button();
+            this.lTurnName = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb1)).BeginInit();
@@ -47,6 +48,7 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.lTurnName);
             this.mainPanel.Controls.Add(this.bDiscard);
             this.mainPanel.Controls.Add(this.bAsk);
             this.mainPanel.Controls.Add(this.cbQuestion);
@@ -62,6 +64,34 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1754, 920);
             this.mainPanel.TabIndex = 0;
+            // 
+            // bDiscard
+            // 
+            this.bDiscard.Location = new System.Drawing.Point(368, 799);
+            this.bDiscard.Name = "bDiscard";
+            this.bDiscard.Size = new System.Drawing.Size(237, 41);
+            this.bDiscard.TabIndex = 9;
+            this.bDiscard.Text = "DISCARD SELECTEDS";
+            this.bDiscard.UseVisualStyleBackColor = true;
+            this.bDiscard.Click += new System.EventHandler(this.bDiscard_Click);
+            // 
+            // bAsk
+            // 
+            this.bAsk.Location = new System.Drawing.Point(137, 799);
+            this.bAsk.Name = "bAsk";
+            this.bAsk.Size = new System.Drawing.Size(211, 41);
+            this.bAsk.TabIndex = 8;
+            this.bAsk.Text = "MAKE QUESTION";
+            this.bAsk.UseVisualStyleBackColor = true;
+            this.bAsk.Click += new System.EventHandler(this.bAsk_Click);
+            // 
+            // cbQuestion
+            // 
+            this.cbQuestion.FormattingEnabled = true;
+            this.cbQuestion.Location = new System.Drawing.Point(137, 765);
+            this.cbQuestion.Name = "cbQuestion";
+            this.cbQuestion.Size = new System.Drawing.Size(468, 28);
+            this.cbQuestion.TabIndex = 7;
             // 
             // pb2
             // 
@@ -156,32 +186,14 @@
             this.infoText.Size = new System.Drawing.Size(445, 442);
             this.infoText.TabIndex = 0;
             // 
-            // cbQuestion
+            // lTurnName
             // 
-            this.cbQuestion.FormattingEnabled = true;
-            this.cbQuestion.Location = new System.Drawing.Point(137, 765);
-            this.cbQuestion.Name = "cbQuestion";
-            this.cbQuestion.Size = new System.Drawing.Size(468, 28);
-            this.cbQuestion.TabIndex = 7;
-            // 
-            // bAsk
-            // 
-            this.bAsk.Location = new System.Drawing.Point(137, 799);
-            this.bAsk.Name = "bAsk";
-            this.bAsk.Size = new System.Drawing.Size(181, 41);
-            this.bAsk.TabIndex = 8;
-            this.bAsk.Text = "MAKE QUESTION";
-            this.bAsk.UseVisualStyleBackColor = true;
-            this.bAsk.Click += new System.EventHandler(this.bAsk_Click);
-            // 
-            // bDiscard
-            // 
-            this.bDiscard.Location = new System.Drawing.Point(392, 799);
-            this.bDiscard.Name = "bDiscard";
-            this.bDiscard.Size = new System.Drawing.Size(213, 41);
-            this.bDiscard.TabIndex = 9;
-            this.bDiscard.Text = "DISCARD SELECTEDS";
-            this.bDiscard.UseVisualStyleBackColor = true;
+            this.lTurnName.AutoSize = true;
+            this.lTurnName.Location = new System.Drawing.Point(664, 563);
+            this.lTurnName.Name = "lTurnName";
+            this.lTurnName.Size = new System.Drawing.Size(51, 20);
+            this.lTurnName.TabIndex = 10;
+            this.lTurnName.Text = "label1";
             // 
             // Form1
             // 
@@ -213,6 +225,7 @@
         private System.Windows.Forms.Button bDiscard;
         private System.Windows.Forms.Button bAsk;
         private System.Windows.Forms.ComboBox cbQuestion;
+        private System.Windows.Forms.Label lTurnName;
     }
 }
 

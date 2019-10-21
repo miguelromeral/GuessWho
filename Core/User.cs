@@ -117,15 +117,9 @@ namespace Core
             }
         }
 
-        public bool MakeMove(Question q, bool answer)
+        public List<Character> MakeMove(Question q, bool answer, bool performs = true)
         {
-            int discards = Board.Discard(q, answer, true);
-
-            if (discards == -1)
-                return false;
-
-            return true;
-
+            return Board.Discard(q, answer, performs);
         }
 
         public override string ToString()

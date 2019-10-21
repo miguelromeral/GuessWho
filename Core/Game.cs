@@ -143,7 +143,7 @@ namespace Core
                 goto endmove;
 
             Logger.WriteToLog(String.Format("{0} is asking {1}.", current, GetFriendlyNameQuestion(question)));
-            MakeQuestion(current, question);
+            var discards = MakeQuestion(current, question);
 
             // Choose selected
             if (current.Inteligence.ShouldDoIAnswer(rival))
@@ -203,21 +203,21 @@ namespace Core
         }
 
 
-        public bool MakeQuestion(User player, Question q)
+        public List<Character> MakeQuestion(User player, Question q)
         {
             if (!player.Questions.Contains(q))
-                return false;
+                return null;
 
             User rival = GetRivalByPlayer(player);
 
             bool answer = rival.Answer(q);
-            bool result = player.MakeMove(q, answer);
+            var result = player.MakeMove(q, answer);
             player.Questions.Remove(q);
             return result;
         }
 
 
-        protected User GetRivalByPlayer(User player)
+        public User GetRivalByPlayer(User player)
         {
             foreach (var p in Players)
                 if (p != player)

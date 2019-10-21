@@ -211,7 +211,7 @@ namespace Core
                 Names.Isabelle.ToString(),
                 Gender.Female,
                 HairColour.Ginger,
-                HairStyle.LongHair,
+                HairStyle.Curly,
                 EyesColour.Brown,
                 FacialHair.None,
                 null));
@@ -222,7 +222,7 @@ namespace Core
                 HairStyle.Partition,
                 EyesColour.Brown,
                 FacialHair.None,
-                new[] { OthersAttributes.BigMouth }.ToList()));
+                new[] { OthersAttributes.BigMouth, OthersAttributes.BigNose }.ToList()));
         }
         
 
@@ -239,9 +239,9 @@ namespace Core
         }
 
 
-        internal int Discard(Question q, bool answer, bool perform = false)
+        internal List<Character> Discard(Question q, bool answer, bool perform = false)
         {
-            int discards = 0;
+            List<Character> discards = new List<Character>();
 
             foreach (var c in Characters)
             {
@@ -256,7 +256,7 @@ namespace Core
                             c.Gender != Gender.Male && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         
                         break;
@@ -266,7 +266,7 @@ namespace Core
                             c.Gender != Gender.Female && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         
                         break;
@@ -278,7 +278,7 @@ namespace Core
                             c.HairColour != HairColour.Ginger && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.Black_HairColour:
@@ -287,7 +287,7 @@ namespace Core
                             c.HairColour != HairColour.Black && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.WhiteHair_HairColour:
@@ -296,7 +296,7 @@ namespace Core
                             c.HairColour != HairColour.White && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.BrownHair_HairColour:
@@ -305,7 +305,7 @@ namespace Core
                             c.HairColour != HairColour.Brown && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.BlondHair_HairColour:
@@ -314,7 +314,7 @@ namespace Core
                             c.HairColour != HairColour.Blond && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
 
@@ -325,7 +325,7 @@ namespace Core
                             c.HairStyle != HairStyle.Partition && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.CurlyHair_HairStyle:
@@ -334,7 +334,7 @@ namespace Core
                             c.HairStyle != HairStyle.Curly && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.HatHair_HairStyle:
@@ -343,7 +343,7 @@ namespace Core
                             c.HairStyle != HairStyle.Hat && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.Bald_HairStyle:
@@ -352,7 +352,7 @@ namespace Core
                             c.HairStyle != HairStyle.Bald && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.Stuff_HairStyle:
@@ -361,7 +361,7 @@ namespace Core
                             c.HairStyle != HairStyle.Stuff && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.LongHair_HairStyle:
@@ -370,7 +370,7 @@ namespace Core
                             c.HairStyle != HairStyle.LongHair && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                         
@@ -381,7 +381,7 @@ namespace Core
                             c.EyesColour != EyesColour.Brown && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.Blue_EyesColour:
@@ -390,7 +390,7 @@ namespace Core
                             c.EyesColour != EyesColour.Blue && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
 
@@ -399,7 +399,7 @@ namespace Core
                             c.FacialHair != FacialHair.Mustache && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.Beard_FacialHair:
@@ -407,7 +407,7 @@ namespace Core
                             c.FacialHair != FacialHair.Beard && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.BillyGoat_FacialHair:
@@ -415,7 +415,7 @@ namespace Core
                             c.FacialHair != FacialHair.BillyGoat && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
 
@@ -424,7 +424,7 @@ namespace Core
                             !c.HasOtherAttribute(OthersAttributes.Glasses) && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.EarRings_OtherAttribute:
@@ -432,7 +432,7 @@ namespace Core
                             !c.HasOtherAttribute(OthersAttributes.EarRings) && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.BigMouth_OtherAttribute:
@@ -440,7 +440,7 @@ namespace Core
                             !c.HasOtherAttribute(OthersAttributes.BigMouth) && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.BigNose_OtherAttribute:
@@ -448,7 +448,7 @@ namespace Core
                             !c.HasOtherAttribute(OthersAttributes.BigNose) && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
                     case Question.RedCheeks_OtherAttribute:
@@ -456,13 +456,13 @@ namespace Core
                             !c.HasOtherAttribute(OthersAttributes.RedCheeks) && answer)
                         {
                             DiscardSingle(c, perform);
-                            discards++;
+                            discards.Add(c);
                         }
                         break;
 
 
                     default:
-                        return -1;
+                        return discards;
 
                 }
             }

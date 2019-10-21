@@ -80,20 +80,6 @@ namespace Forms
         }
 
 
-        public void PlayQuestion_User(Question question)
-        {
-            User current, rival;
-
-            current = Players[Turn];
-            rival = GetRivalByPlayer(current);
-            
-            PrintGame(true);
-            
-            Logger.WriteToLog(String.Format("{0} is asking {1}.", current, GetFriendlyNameQuestion(question)));
-            MakeQuestion(current, question);
-        }
-
-
         private void UpdatePlayersPanels()
         {
             foreach(var p in Players)

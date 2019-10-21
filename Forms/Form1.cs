@@ -16,6 +16,9 @@ namespace Forms
 
         private FLogger Logger;
         public CGame Game;
+        private CUser Current;
+        private CUser Rival;
+        private List<Character> Discards;
 
         public Form1()
         {
@@ -25,14 +28,14 @@ namespace Forms
             Game = new CGame();
             Game.Logger = Logger;
             
-            CUser u1 = Game.AddPlayer("Miguel", Core.AICategory.Random, Color.FromArgb(255, 105, 105), pPlayer1, pb1);
-            //CUser u1 = Game.AddPlayer("Miguel", Core.AICategory.Human, Color.FromArgb(255, 105, 105), pPlayer1, pb1);
+            //CUser u1 = Game.AddPlayer("Miguel", Core.AICategory.Random, Color.FromArgb(255, 105, 105), pPlayer1, pb1);
+            CUser u1 = Game.AddPlayer("Miguel", Core.AICategory.Human, Color.FromArgb(255, 105, 105), pPlayer1, pb1);
             CUser u2 = Game.AddPlayer("Javi", Core.AICategory.Random, Color.FromArgb(94, 164, 255), pPlayer2, pb2);
             
             u1.CreateButtons(lPlayer1);
             u2.CreateButtons(lPlayer2);
-
-            UpdatePlayerQuestions(Game.Players[0], cbQuestion);
+            
+            ChangeUserTurn();
 
             Game.Start();
         }
@@ -44,18 +47,32 @@ namespace Forms
             if (!Game.HumanTurn)
             {
                 Game.Play_Step();
-                UpdatePlayerQuestions(Game.Players[0], cbQuestion);
+                ChangeUserTurn();
             }
         }
 
-
-        void UpdatePlayerQuestions(User user, ComboBox combo)
+        void ChangeUserTurn()
         {
-            combo.Items.Clear();
+            Current = Game.Players[Game.Turn] as CUser;
+            Rival = Game.GetRivalByPlayer(Current) as CUser;
+
+            lTurnName.Text = Current.Name;
+            
+            UpdatePlayerQuestions(Current);
+
+            Rival.Panel.Visible = false;
+            // THIS IS OK, but now for debugging i'm allowed to cheat ;)
+            //Rival.Picture.Visible = false;
+        }
+
+
+        void UpdatePlayerQuestions(User user)
+        {
+            cbQuestion.Items.Clear();
 
             foreach(var q in user.Questions)
             {
-                combo.Items.Add(Core.Game.GetFriendlyNameQuestion(q));
+                cbQuestion.Items.Add(Core.Game.GetFriendlyNameQuestion(q));
             }
         }
 
@@ -68,12 +85,21 @@ namespace Forms
                 MessageBox.Show("The question \"" + cbQuestion.SelectedItem.ToString() + "\" is not recognized.");
                 return;
             }
-            Game.PlayQuestion_User(question);
-            User rival = Game.Players[1];
-            bool answer = rival.Answer(question);
 
-            CUser me = Game.Players[0] as CUser;
-            me.RemarkCharacters(question, answer);
+            Game.PrintGame(true);
+
+            Logger.WriteToLog(String.Format("{0} is asking {1}.", Current, Core.Game.GetFriendlyNameQuestion(question)));
+
+            bool answer = Rival.Answer(question);
+            Discards = Current.MakeMove(question, answer, false);
+
+
+            Current.RemarkCharacters(Discards);
+        }
+
+        private void bDiscard_Click(object sender, EventArgs e)
+        {
+            // TODO
         }
     }
 }

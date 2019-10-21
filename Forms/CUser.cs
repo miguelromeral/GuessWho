@@ -76,13 +76,20 @@ namespace Forms
                 if (b.Character.Discarded)
                 {
                     b.BackgroundImage = null;
+                    //b.Visible = false;
                 }
             }
         }
 
-        public void RemarkCharacters(Question question, bool answer)
+        public void RemarkCharacters(List<Character> discards)
         {
-            // TODO
+            foreach(var b in Buttons)
+            {
+                if (discards.Where(x => x.Name == b.Character.Name).FirstOrDefault() != null)
+                {
+                    b.Checked = true;
+                }
+            }
         }
     }
 }
