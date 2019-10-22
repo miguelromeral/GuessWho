@@ -19,6 +19,7 @@ namespace Forms
         public Panel Panel { get; set; }
 
         public PictureBox Picture { get; set; }
+        public Label Count{ get; set; }
 
         public CUser(string n, AICategory level, Color color, Panel panel) : base(n, level)
         {

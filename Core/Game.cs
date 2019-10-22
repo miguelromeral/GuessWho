@@ -51,7 +51,7 @@ namespace Core
                 return null;
             }
         }
-        public bool Finished { get { return Winner == null; } }
+        public bool Finished { get { return Winner != null; } }
 
         public bool HumanTurn
         {

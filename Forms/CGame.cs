@@ -16,7 +16,7 @@ namespace Forms
 
         }
 
-        public CUser AddPlayer(string name, AICategory level, Color c, Panel panel, PictureBox picture)
+        public CUser AddPlayer(string name, AICategory level, Color c, Panel panel, PictureBox picture, Label lcount)
         {
             try
             {
@@ -26,6 +26,7 @@ namespace Forms
                 CUser u = new CUser(name, level, c, panel)
                 {
                     Picture = picture,
+                    Count = lcount,
                 };
                 u.SetSecret(GetRandomSolution(u));
                 u.Board.Logger = Logger;

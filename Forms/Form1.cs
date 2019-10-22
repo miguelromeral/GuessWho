@@ -20,6 +20,8 @@ namespace Forms
         private CUser Rival;
         private List<Character> Discards;
 
+        bool asked = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -27,16 +29,18 @@ namespace Forms
             Logger = new FLogger(this.infoText);
             Game = new CGame();
             Game.Logger = Logger;
-            
-            //CUser u1 = Game.AddPlayer("Miguel", Core.AICategory.Random, Color.FromArgb(255, 105, 105), pPlayer1, pb1);
-            CUser u1 = Game.AddPlayer("Miguel", Core.AICategory.Human, Color.FromArgb(255, 105, 105), pPlayer1, pb1);
-            CUser u2 = Game.AddPlayer("Javi", Core.AICategory.Random, Color.FromArgb(94, 164, 255), pPlayer2, pb2);
+
+            //CUser u1 = Game.AddPlayer("Miguel", Core.AICategory.Random, Color.FromArgb(255, 105, 105), pPlayer1, pb1, lCount1);
+            CUser u1 = Game.AddPlayer("Miguel", Core.AICategory.Human, Color.FromArgb(255, 105, 105), pPlayer1, pb1, lCount1);
+            CUser u2 = Game.AddPlayer("Javi", Core.AICategory.Random, Color.FromArgb(94, 164, 255), pPlayer2, pb2, lCount2);
+            //CUser u2 = Game.AddPlayer("Javi", Core.AICategory.Human, Color.FromArgb(94, 164, 255), pPlayer2, pb2, lCount2);
             
             u1.CreateButtons(lPlayer1);
             u2.CreateButtons(lPlayer2);
             
             ChangeUserTurn();
 
+            UpdatePlayerQuestions(Current);
             Game.Start();
         }
 
@@ -48,6 +52,10 @@ namespace Forms
             {
                 Game.Play_Step();
                 ChangeUserTurn();
+                if (Game.Finished)
+                {
+                    MessageBox.Show(Game.Winner + " has already won the game!");
+                }
             }
             else
             {
@@ -60,16 +68,20 @@ namespace Forms
             Current = Game.Players[Game.Turn] as CUser;
             Rival = Game.GetRivalByPlayer(Current) as CUser;
 
-            lTurnName.Text = Current.Name;
+            Current.Count.Text = "Left: " + Current.Remainders;
+            Rival.Count.Text = "Left: " + Rival.Remainders;
+
+            lTurnName.Text = "Turn: " + Current.Name;
             
-            UpdatePlayerQuestions(Current);
+            if (Current.Inteligence.Level == AICategory.Human)
+            {
+                Current.Panel.Visible = true;
+                Current.Picture.Visible = true;
 
-            Current.Panel.Visible = true;
-            Current.Picture.Visible = true;
-
-            // THIS IS OK, but now for debugging i'm allowed to cheat ;)
-            //Rival.Panel.Visible = false;
-            //Rival.Picture.Visible = false;
+                // THIS IS OK, but now for debugging i'm allowed to cheat ;)
+                //Rival.Panel.Visible = false;
+                //Rival.Picture.Visible = false;
+            }
         }
 
 
@@ -77,7 +89,7 @@ namespace Forms
         {
             cbQuestion.Items.Clear();
 
-            foreach(var q in user.Questions)
+            foreach (var q in user.Questions)
             {
                 cbQuestion.Items.Add(Core.Game.GetFriendlyNameQuestion(q));
             }
@@ -86,6 +98,12 @@ namespace Forms
 
         private void bAsk_Click(object sender, EventArgs e)
         {
+            if (asked)
+            {
+                MessageBox.Show("You've already asked something.");
+                return;
+            }
+
             Question question = Core.Game.GetQuestionByFriendlyName(cbQuestion.SelectedItem.ToString());
 
             if(question == Question.None)
@@ -94,6 +112,7 @@ namespace Forms
                 return;
             }
 
+            Current.Questions.Remove(question);
             Game.PrintGame(true);
 
             Logger.WriteToLog(String.Format("{0} is asking {1}.", Current, Core.Game.GetFriendlyNameQuestion(question)));
@@ -103,21 +122,56 @@ namespace Forms
 
 
             Current.RemarkCharacters(Discards);
+            asked = true;
         }
 
         private void bDiscard_Click(object sender, EventArgs e)
-        {
+        {   
             if (Current.MakeMove(Current.SelectedCharacters()))
             {
-                Game.ClearPlayerMove(Current);
-                Game.ClearCheckedButtons(Current);
-                Game.NextMove();
-                Game.UpdatePlayersPanels();
-                ChangeUserTurn();
+                NextMove();
             }
             else
             {
-                MessageBox.Show("You have to select, at least, one character.");
+                MessageBox.Show("You have to select, at least, one of your characters.");
+            }
+        }
+
+        void NextMove()
+        {
+            asked = false;
+            UpdatePlayerQuestions(Current);
+            Game.ClearPlayerMove(Current);
+            Game.ClearCheckedButtons(Current);
+            Game.NextMove();
+            Game.UpdatePlayersPanels();
+            ChangeUserTurn();
+        }
+
+        private void bResolve_Click(object sender, EventArgs e)
+        {
+            var selected = Current.SelectedCharacters();
+            if(selected == null || selected.Count != 1)
+            {
+                MessageBox.Show("You must select only one character to resolve.");
+                return;
+            }
+
+            var solution = selected.FirstOrDefault();
+            Current.Choosen = solution;
+
+            if(Current.Choosen.Name == Rival.Secret.Name)
+            {
+                Rival.Picture.Visible = true;
+                Rival.Panel.Visible = true;
+                MessageBox.Show("You won the game!");
+                var w = Game.Winner;
+                bool f = Game.Finished;
+            }
+            else
+            {
+                MessageBox.Show("You're wrong. Best luck next time!");
+                NextMove();
             }
         }
     }

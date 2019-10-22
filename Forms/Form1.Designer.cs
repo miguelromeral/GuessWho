@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.lCount2 = new System.Windows.Forms.Label();
+            this.lCount1 = new System.Windows.Forms.Label();
+            this.lTurnName = new System.Windows.Forms.Label();
             this.bDiscard = new System.Windows.Forms.Button();
             this.bAsk = new System.Windows.Forms.Button();
             this.cbQuestion = new System.Windows.Forms.ComboBox();
@@ -40,7 +43,7 @@
             this.lPlayer1 = new System.Windows.Forms.Label();
             this.bPass = new System.Windows.Forms.Button();
             this.infoText = new System.Windows.Forms.TextBox();
-            this.lTurnName = new System.Windows.Forms.Label();
+            this.bResolve = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb1)).BeginInit();
@@ -48,6 +51,9 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.bResolve);
+            this.mainPanel.Controls.Add(this.lCount2);
+            this.mainPanel.Controls.Add(this.lCount1);
             this.mainPanel.Controls.Add(this.lTurnName);
             this.mainPanel.Controls.Add(this.bDiscard);
             this.mainPanel.Controls.Add(this.bAsk);
@@ -64,6 +70,33 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1754, 920);
             this.mainPanel.TabIndex = 0;
+            // 
+            // lCount2
+            // 
+            this.lCount2.AutoSize = true;
+            this.lCount2.Location = new System.Drawing.Point(1115, 66);
+            this.lCount2.Name = "lCount2";
+            this.lCount2.Size = new System.Drawing.Size(51, 20);
+            this.lCount2.TabIndex = 12;
+            this.lCount2.Text = "label2";
+            // 
+            // lCount1
+            // 
+            this.lCount1.AutoSize = true;
+            this.lCount1.Location = new System.Drawing.Point(594, 67);
+            this.lCount1.Name = "lCount1";
+            this.lCount1.Size = new System.Drawing.Size(51, 20);
+            this.lCount1.TabIndex = 11;
+            this.lCount1.Text = "label1";
+            // 
+            // lTurnName
+            // 
+            this.lTurnName.AutoSize = true;
+            this.lTurnName.Location = new System.Drawing.Point(664, 563);
+            this.lTurnName.Name = "lTurnName";
+            this.lTurnName.Size = new System.Drawing.Size(51, 20);
+            this.lTurnName.TabIndex = 10;
+            this.lTurnName.Text = "label1";
             // 
             // bDiscard
             // 
@@ -186,14 +219,15 @@
             this.infoText.Size = new System.Drawing.Size(445, 442);
             this.infoText.TabIndex = 0;
             // 
-            // lTurnName
+            // bResolve
             // 
-            this.lTurnName.AutoSize = true;
-            this.lTurnName.Location = new System.Drawing.Point(664, 563);
-            this.lTurnName.Name = "lTurnName";
-            this.lTurnName.Size = new System.Drawing.Size(51, 20);
-            this.lTurnName.TabIndex = 10;
-            this.lTurnName.Text = "label1";
+            this.bResolve.Location = new System.Drawing.Point(413, 858);
+            this.bResolve.Name = "bResolve";
+            this.bResolve.Size = new System.Drawing.Size(302, 46);
+            this.bResolve.TabIndex = 13;
+            this.bResolve.Text = "RESOLVE";
+            this.bResolve.UseVisualStyleBackColor = true;
+            this.bResolve.Click += new System.EventHandler(this.bResolve_Click);
             // 
             // Form1
             // 
@@ -226,6 +260,9 @@
         private System.Windows.Forms.Button bAsk;
         private System.Windows.Forms.ComboBox cbQuestion;
         private System.Windows.Forms.Label lTurnName;
+        private System.Windows.Forms.Label lCount2;
+        private System.Windows.Forms.Label lCount1;
+        private System.Windows.Forms.Button bResolve;
     }
 }
 

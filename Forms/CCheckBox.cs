@@ -32,7 +32,8 @@ namespace Forms
             else
             {
                 cb.BackColor = Color;
-                cb.BackgroundImage = GUIUtilities.SetImageOpacity(Image, PERCENTAGE, 1F);
+                if(!Player.Board.Characters.Where(x => x.Name == Character.Name).FirstOrDefault().Discarded)
+                    cb.BackgroundImage = GUIUtilities.SetImageOpacity(Image, PERCENTAGE, 1F);
             }
         }
     }
