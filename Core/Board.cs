@@ -26,7 +26,7 @@ namespace Core
                 HairColour.White,
                 HairStyle.Curly,
                 EyesColour.Blue,
-                FacialHair.None,
+                SkinColour.White,
                 new[] {
                     OthersAttributes.EarRings,
                     OthersAttributes.Glasses
@@ -34,20 +34,24 @@ namespace Core
             Characters.Add(new Character(
                 Names.Roger.ToString(),
                 Gender.Male,
-                HairColour.None,
+                HairColour.Brown,
                 HairStyle.Bald,
                 EyesColour.Brown,
-                FacialHair.Beard,
-                null));
+                SkinColour.Black,
+                new[] {
+                    OthersAttributes.Mustache,
+                    OthersAttributes.Beard
+                }.ToList()));
             Characters.Add(new Character(
                 Names.Paul.ToString(),
                 Gender.Male,
                 HairColour.White,
                 HairStyle.Partition,
                 EyesColour.Brown,
-                FacialHair.BillyGoat,
+                SkinColour.White,
                 new[]
                 {
+                    OthersAttributes.Beard,
                     OthersAttributes.Glasses
                 }.ToList()));
             Characters.Add(new Character(
@@ -56,7 +60,7 @@ namespace Core
                 HairColour.Black,
                 HairStyle.Hat,
                 EyesColour.Brown,
-                FacialHair.None,
+                SkinColour.White,
                 new[] {
                     OthersAttributes.BigMouth,
                     OthersAttributes.BigNose,
@@ -67,33 +71,36 @@ namespace Core
                 HairColour.Black,
                 HairStyle.Curly,
                 EyesColour.Brown,
-                FacialHair.Beard,
+                SkinColour.Black,
                 new[] {
+                    OthersAttributes.Beard,
                     OthersAttributes.BigMouth
                 }.ToList()));
             Characters.Add(new Character(
                 Names.Philippe.ToString(),
                 Gender.Male,
-                HairColour.None,
+                HairColour.Ginger,
                 HairStyle.Bald,
                 EyesColour.Brown,
-                FacialHair.Beard,
-                null));
+                SkinColour.White,
+                new[] {
+                    OthersAttributes.Beard
+                }.ToList()));
             Characters.Add(new Character(
                 Names.Katrin.ToString(),
                 Gender.Female,
                 HairColour.Brown,
                 HairStyle.Partition,
                 EyesColour.Brown,
-                FacialHair.None,
+                SkinColour.White,
                 new[] { OthersAttributes.EarRings }.ToList()));
             Characters.Add(new Character(
                 Names.Daniel.ToString(),
                 Gender.Male,
-                HairColour.None,
+                HairColour.Black,
                 HairStyle.Bald,
                 EyesColour.Blue,
-                FacialHair.None,
+                SkinColour.White,
                 new[] { OthersAttributes.Glasses }.ToList()));
             Characters.Add(new Character(
                 Names.Bernard.ToString(),
@@ -101,7 +108,7 @@ namespace Core
                 HairColour.Brown,
                 HairStyle.Hat,
                 EyesColour.Brown,
-                FacialHair.None,
+                SkinColour.Black,
                 new[] { OthersAttributes.BigNose }.ToList()));
             Characters.Add(new Character(
                 Names.Hans.ToString(),
@@ -109,15 +116,18 @@ namespace Core
                 HairColour.Blond,
                 HairStyle.Partition,
                 EyesColour.Brown,
-                FacialHair.Mustache,
-                new[] { OthersAttributes.BigMouth }.ToList()));
+                SkinColour.White,
+                new[] {
+                    OthersAttributes.BigMouth,
+                    OthersAttributes.Mustache
+                }.ToList()));
             Characters.Add(new Character(
                 Names.Herman.ToString(),
                 Gender.Male,
-                HairColour.None,
+                HairColour.Ginger,
                 HairStyle.Bald,
                 EyesColour.Brown,
-                FacialHair.None,
+                SkinColour.White,
                 new[] { OthersAttributes.BigNose }.ToList()));
             Characters.Add(new Character(
                 Names.Joe.ToString(),
@@ -125,7 +135,7 @@ namespace Core
                 HairColour.Blond,
                 HairStyle.Partition,
                 EyesColour.Blue,
-                FacialHair.None,
+                SkinColour.White,
                 new[] { OthersAttributes.BigMouth }.ToList()));
             Characters.Add(new Character(
                 Names.Theo.ToString(),
@@ -133,15 +143,19 @@ namespace Core
                 HairColour.Black,
                 HairStyle.Curly,
                 EyesColour.Brown,
-                FacialHair.Mustache,
-                new[] { OthersAttributes.BigMouth }.ToList()));
+                SkinColour.White,
+                new[] {
+                    OthersAttributes.BigMouth,
+                    OthersAttributes.Mustache,
+                    OthersAttributes.BigNose
+                }.ToList()));
             Characters.Add(new Character(
                 Names.Sarah.ToString(),
                 Gender.Female,
                 HairColour.Blond,
                 HairStyle.Hat,
                 EyesColour.Brown,
-                FacialHair.None,
+                SkinColour.White,
                 new[] { OthersAttributes.EarRings, OthersAttributes.Glasses }.ToList()));
             Characters.Add(new Character(
                 Names.Marta.ToString(),
@@ -149,23 +163,23 @@ namespace Core
                 HairColour.Brown,
                 HairStyle.Hat,
                 EyesColour.Brown,
-                FacialHair.None,
-                new[] { OthersAttributes.EarRings, OthersAttributes.RedCheeks }.ToList()));
+                SkinColour.White,
+                new[] { OthersAttributes.EarRings }.ToList()));
             Characters.Add(new Character(
                 Names.Lucas.ToString(),
                 Gender.Male,
                 HairColour.Blond,
                 HairStyle.Curly,
                 EyesColour.Brown,
-                FacialHair.Beard,
-                null));
+                SkinColour.White,
+                 new[] { OthersAttributes.Mustache, OthersAttributes.Beard }.ToList()));
             Characters.Add(new Character(
                 Names.Carmen.ToString(),
                 Gender.Female,
                 HairColour.Brown,
                 HairStyle.Partition,
                 EyesColour.Brown,
-                FacialHair.None,
+                SkinColour.Black,
                 null));
             Characters.Add(new Character(
                 Names.Anita.ToString(),
@@ -173,39 +187,39 @@ namespace Core
                 HairColour.Blond,
                 HairStyle.Partition,
                 EyesColour.Blue,
-                FacialHair.None,
+                SkinColour.White,
                 null));
             Characters.Add(new Character(
                 Names.Sophie.ToString(),
                 Gender.Female,
                 HairColour.Black,
-                HairStyle.Stuff,
+                HairStyle.Curly,
                 EyesColour.Brown,
-                FacialHair.None,
+                SkinColour.Black,
                 new[] { OthersAttributes.BigMouth, OthersAttributes.BigNose, OthersAttributes.Glasses }.ToList()));
             Characters.Add(new Character(
                 Names.Charles.ToString(),
                 Gender.Male,
-                HairColour.None,
+                HairColour.White,
                 HairStyle.Bald,
                 EyesColour.Brown,
-                FacialHair.Mustache,
-                new[] { OthersAttributes.Glasses, OthersAttributes.BigNose }.ToList()));
+                SkinColour.White,
+                new[] { OthersAttributes.Glasses, OthersAttributes.BigNose, OthersAttributes.Mustache }.ToList()));
             Characters.Add(new Character(
                 Names.Stephen.ToString(),
                 Gender.Male,
                 HairColour.Ginger,
                 HairStyle.Partition,
                 EyesColour.Blue,
-                FacialHair.Mustache,
-                null));
+                SkinColour.White, 
+                new[] { OthersAttributes.Mustache }.ToList()));
             Characters.Add(new Character(
                 Names.Eric.ToString(),
                 Gender.Male,
                 HairColour.Blond,
                 HairStyle.Hat,
                 EyesColour.Brown,
-                FacialHair.None,
+                SkinColour.White,
                 new[] { OthersAttributes.BigMouth }.ToList()));
             Characters.Add(new Character(
                 Names.Isabelle.ToString(),
@@ -213,7 +227,7 @@ namespace Core
                 HairColour.Ginger,
                 HairStyle.Curly,
                 EyesColour.Brown,
-                FacialHair.None,
+                SkinColour.White,
                 null));
             Characters.Add(new Character(
                 Names.Victor.ToString(),
@@ -221,7 +235,7 @@ namespace Core
                 HairColour.White,
                 HairStyle.Partition,
                 EyesColour.Brown,
-                FacialHair.None,
+                SkinColour.White,
                 new[] { OthersAttributes.BigMouth, OthersAttributes.BigNose }.ToList()));
         }
         
@@ -262,223 +276,24 @@ namespace Core
                 if (c.Discarded)
                     continue;
 
-                switch (q)
+                bool? match = null;
+
+                match = c.AnswerQuestion(q);
+
+                if(match != null)
                 {
-                    case Question.Man_Gender:
-
-                        if (c.Gender == Gender.Male && !answer ||
-                            c.Gender != Gender.Male && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        
-                        break;
-                    case Question.Woman_Gender:
-
-                        if (c.Gender == Gender.Female && !answer ||
-                            c.Gender != Gender.Female && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        
-                        break;
-
-
-                    case Question.Ginger_HairColour:
-
-                        if (c.HairColour == HairColour.Ginger && !answer ||
-                            c.HairColour != HairColour.Ginger && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.Black_HairColour:
-
-                        if (c.HairColour == HairColour.Black && !answer ||
-                            c.HairColour != HairColour.Black && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.WhiteHair_HairColour:
-
-                        if (c.HairColour == HairColour.White && !answer ||
-                            c.HairColour != HairColour.White && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.BrownHair_HairColour:
-
-                        if (c.HairColour == HairColour.Brown && !answer ||
-                            c.HairColour != HairColour.Brown && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.BlondHair_HairColour:
-
-                        if (c.HairColour == HairColour.Blond && !answer ||
-                            c.HairColour != HairColour.Blond && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-
-
-                    case Question.PartitionHair_HairStyle:
-
-                        if (c.HairStyle == HairStyle.Partition && !answer ||
-                            c.HairStyle != HairStyle.Partition && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.CurlyHair_HairStyle:
-
-                        if (c.HairStyle == HairStyle.Curly && !answer ||
-                            c.HairStyle != HairStyle.Curly && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.HatHair_HairStyle:
-
-                        if (c.HairStyle == HairStyle.Hat && !answer ||
-                            c.HairStyle != HairStyle.Hat && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.Bald_HairStyle:
-
-                        if (c.HairStyle == HairStyle.Bald && !answer ||
-                            c.HairStyle != HairStyle.Bald && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.Stuff_HairStyle:
-
-                        if (c.HairStyle == HairStyle.Stuff && !answer ||
-                            c.HairStyle != HairStyle.Stuff && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.LongHair_HairStyle:
-
-                        if (c.HairStyle == HairStyle.LongHair && !answer ||
-                            c.HairStyle != HairStyle.LongHair && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                        
-
-                    case Question.Brown_EyesColour:
-
-                        if (c.EyesColour == EyesColour.Brown && !answer ||
-                            c.EyesColour != EyesColour.Brown && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.Blue_EyesColour:
-
-                        if (c.EyesColour == EyesColour.Blue && !answer ||
-                            c.EyesColour != EyesColour.Blue && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-
-                    case Question.Mustache_FacialHair:
-                        if (c.FacialHair == FacialHair.Mustache && !answer ||
-                            c.FacialHair != FacialHair.Mustache && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.Beard_FacialHair:
-                        if (c.FacialHair == FacialHair.Beard && !answer ||
-                            c.FacialHair != FacialHair.Beard && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.BillyGoat_FacialHair:
-                        if (c.FacialHair == FacialHair.BillyGoat && !answer ||
-                            c.FacialHair != FacialHair.BillyGoat && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-
-                    case Question.Glasses_OtherAttribute:
-                        if (c.HasOtherAttribute(OthersAttributes.Glasses) && !answer ||
-                            !c.HasOtherAttribute(OthersAttributes.Glasses) && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.EarRings_OtherAttribute:
-                        if (c.HasOtherAttribute(OthersAttributes.EarRings) && !answer ||
-                            !c.HasOtherAttribute(OthersAttributes.EarRings) && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.BigMouth_OtherAttribute:
-                        if (c.HasOtherAttribute(OthersAttributes.BigMouth) && !answer ||
-                            !c.HasOtherAttribute(OthersAttributes.BigMouth) && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.BigNose_OtherAttribute:
-                        if (c.HasOtherAttribute(OthersAttributes.BigNose) && !answer ||
-                            !c.HasOtherAttribute(OthersAttributes.BigNose) && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-                    case Question.RedCheeks_OtherAttribute:
-                        if (c.HasOtherAttribute(OthersAttributes.RedCheeks) && !answer ||
-                            !c.HasOtherAttribute(OthersAttributes.RedCheeks) && answer)
-                        {
-                            DiscardSingle(c, perform);
-                            discards.Add(c);
-                        }
-                        break;
-
-
-                    default:
-                        return discards;
-
+                    if ((bool) match ^ answer)
+                    {
+                        DiscardSingle(c, perform);
+                        discards.Add(c);
+                    }
                 }
+                else
+                {
+                    return discards;
+                }
+
+                
             }
             return discards;
         }

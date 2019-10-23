@@ -43,7 +43,6 @@ namespace Core
 
     public enum HairColour
     {
-        None,
         Ginger,
         Black,
         White,
@@ -53,12 +52,10 @@ namespace Core
 
     public enum HairStyle
     {
-        Partition, // Hacia los lados, raya en medio
-        Curly,
         Hat,
-        Bald, // Muy corto, rapado, sin pelo, calo
-        Stuff,
-        LongHair
+        Bald,
+        Curly,
+        Partition
     }
 
     public enum EyesColour
@@ -67,21 +64,20 @@ namespace Core
         Blue
     }
     
-    public enum FacialHair
+    public enum SkinColour
     {
-        None,
-        Mustache,
-        Beard,
-        BillyGoat,  // Perillas
+        Black,
+        White
     }
-
+    
     public enum OthersAttributes
     {
+        Mustache,
+        Beard,
         Glasses,
-        EarRings,
         BigMouth,
         BigNose,
-        RedCheeks, // mejillas coloradas
+        EarRings,
     }
 
     // http://chalkdustmagazine.com/blog/cracking-guess-board-game/
@@ -109,46 +105,40 @@ namespace Core
         BlondHair_HairColour,
         
         // Hair Style
-        [Description("Does it have partition hair?")]
-        PartitionHair_HairStyle,
-        [Description("Does it have curly hair?")]
-        CurlyHair_HairStyle,
         [Description("Does it wear a hat?")]
         HatHair_HairStyle,
         [Description("Does it have a bald head?")]
         Bald_HairStyle,
-        [Description("Does it have stuff in its hair?")]
-        Stuff_HairStyle,
-        [Description("Does it have long hair?")]
-        LongHair_HairStyle,
-        
+        [Description("Does it have curly hair?")]
+        CurlyHair_HairStyle,
+        [Description("Does it have partition hair?")]
+        PartitionHair_HairStyle,
+
         // Eyes colour
         [Description("Does it have brown eyes?")]
         Brown_EyesColour,
         [Description("Does it habe blue eyes?")]
         Blue_EyesColour,
-        
-        // Facial hair
-        [Description("Does it have shaved face?")]
-        None_FacialHair,
-        [Description("Does it have mustache?")]
-        Mustache_FacialHair,
-        [Description("Does it have beard?")]
-        Beard_FacialHair,
-        [Description("Does it have billy goat?")]
-        BillyGoat_FacialHair,
+
+        // Skin colour
+        [Description("Is its skin black colour?")]
+        Black_SkinColour,
+        [Description("Is its skin white colour?")]
+        White_SkinColour,
         
         // Other Attributes
+        [Description("Does it has a mustache?")]
+        Mustache_OtherAttribute,
+        [Description("Does it has a beard?")]
+        Beard_OtherAttribute,
         [Description("Does it wear glasses?")]
         Glasses_OtherAttribute,
-        [Description("Does it wear ear rings?")]
-        EarRings_OtherAttribute,
         [Description("Does it have big mouth?")]
         BigMouth_OtherAttribute,
         [Description("Does it have big nose?")]
         BigNose_OtherAttribute,
-        [Description("Does it have red cheeks?")]
-        RedCheeks_OtherAttribute,
+        [Description("Does it wear ear rings?")]
+        EarRings_OtherAttribute,
     }
 
 

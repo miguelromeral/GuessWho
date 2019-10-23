@@ -123,6 +123,12 @@ namespace Forms
                 return;
             }
 
+            if(cbQuestion.SelectedIndex == -1)
+            {
+                MessageBox.Show("You must select a question to ask.");
+                return;
+            }
+
             Question question = Core.Game.GetQuestionByFriendlyName(cbQuestion.SelectedItem.ToString());
 
             if(question == Question.None)
