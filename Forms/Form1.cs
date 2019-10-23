@@ -22,7 +22,7 @@ namespace Forms
 
         bool asked = false;
 
-        public Form1()
+        public Form1(string user1, string user2, Core.AICategory ai1, Core.AICategory ai2, Color c1, Color c2)
         {
             InitializeComponent();
 
@@ -30,11 +30,11 @@ namespace Forms
             Game = new CGame();
             Game.Logger = Logger;
 
-            //CUser u1 = Game.AddPlayer("Miguel", Core.AICategory.Random, Color.FromArgb(255, 105, 105), pPlayer1, pb1, lCount1);
-            CUser u1 = Game.AddPlayer("Miguel", Core.AICategory.Human, Color.FromArgb(255, 105, 105), pPlayer1, pb1, lCount1);
-            CUser u2 = Game.AddPlayer("Javi", Core.AICategory.Random, Color.FromArgb(94, 164, 255), pPlayer2, pb2, lCount2);
-            //CUser u2 = Game.AddPlayer("Javi", Core.AICategory.Human, Color.FromArgb(94, 164, 255), pPlayer2, pb2, lCount2);
-            
+            //CUser u1 = Game.AddPlayer(user1, ai1, Color.FromArgb(255, 105, 105), pPlayer1, pb1, lCount1);
+            CUser u1 = Game.AddPlayer(user1, ai1, c1, pPlayer1, pb1, lCount1);
+            CUser u2 = Game.AddPlayer(user2, ai2, c2, pPlayer2, pb2, lCount2);
+            //CUser u2 = Game.AddPlayer(user2, ai2, Color.FromArgb(94, 164, 255), pPlayer2, pb2, lCount2);
+
             u1.CreateButtons(lPlayer1);
             u2.CreateButtons(lPlayer2);
             
@@ -42,9 +42,27 @@ namespace Forms
 
             UpdatePlayerQuestions(Current);
             Game.Start();
+            EnableButtons();
         }
 
-        
+        void EnableButtons()
+        {
+            if (Game.Finished)
+            {
+                bPass.Enabled = false;
+                bResolve.Enabled = false;
+                bDiscard.Enabled = false;
+                bAsk.Enabled = false;
+            }
+            else
+            {
+                bool human = Current.Inteligence.Level == AICategory.Human;
+                bPass.Enabled = !human;
+                bResolve.Enabled = human;
+                bDiscard.Enabled = human;
+                bAsk.Enabled = !asked && human;
+            }
+        }
 
         private void bPass_Click(object sender, EventArgs e)
         {
@@ -61,6 +79,7 @@ namespace Forms
             {
                 MessageBox.Show("It is a player move. Select characters to discard.");
             }
+            EnableButtons();
         }
 
         void ChangeUserTurn()
@@ -123,6 +142,7 @@ namespace Forms
 
             Current.RemarkCharacters(Discards);
             asked = true;
+            EnableButtons();
         }
 
         private void bDiscard_Click(object sender, EventArgs e)
@@ -130,6 +150,7 @@ namespace Forms
             if (Current.MakeMove(Current.SelectedCharacters()))
             {
                 NextMove();
+                EnableButtons();
             }
             else
             {
@@ -165,13 +186,13 @@ namespace Forms
                 Rival.Picture.Visible = true;
                 Rival.Panel.Visible = true;
                 MessageBox.Show("You won the game!");
-                var w = Game.Winner;
-                bool f = Game.Finished;
+                EnableButtons();
             }
             else
             {
                 MessageBox.Show("You're wrong. Best luck next time!");
                 NextMove();
+                EnableButtons();
             }
         }
     }
