@@ -98,8 +98,8 @@ namespace Forms
                 Current.Picture.Visible = true;
 
                 // THIS IS OK, but now for debugging i'm allowed to cheat ;)
-                //Rival.Panel.Visible = false;
-                //Rival.Picture.Visible = false;
+                Rival.Panel.Visible = false;
+                Rival.Picture.Visible = false;
             }
         }
 

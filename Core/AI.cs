@@ -35,19 +35,27 @@ namespace Core
             return null;
         }
 
-        public Question ChooseQuestion()
+        public Question ChooseQuestion(bool random = false)
         {
             if (Player.Questions == null || Player.Questions.Count == 0)
                 return Question.None;
 
+            var seed = new Random();
+
+            AICategory level = (random ? (AICategory) seed.Next(2, 4) : Level);
+
             Question choosen = Question.None;
-            switch (Level)
+            switch (level)
             {
-                case AICategory.Random:
-                    choosen = Player.Questions[new Random().Next(Player.Questions.Count)];
-                    break;
-                default:
+                case AICategory.Clever:
                     choosen = GetOptimizedQuestion();
+                    break;
+                case AICategory.Mix:
+                    choosen = ChooseQuestion(true);
+                    break;
+                case AICategory.Random:
+                default:
+                    choosen = Player.Questions[seed.Next(Player.Questions.Count)];
                     break;
             }
             return choosen;
