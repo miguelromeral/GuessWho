@@ -145,6 +145,7 @@ namespace Core
     public enum AICategory
     {
         Human = 0,
-        Random
+        Random,
+        Clever,
     }
 }

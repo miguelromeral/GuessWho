@@ -8,26 +8,26 @@ namespace Core
 {
     public class AI
     {
-        public User player;
+        public User Player;
         public AICategory Level { get; set; }
 
 
         public AI(User player, AICategory level)
         {
-            this.player = player;
+            this.Player = player;
             Level = level;
         }
 
 
         public bool ShouldDoIAnswer(User rival)
         {
-            bool answ = (player.Remainders == 1);
+            bool answ = (Player.Remainders == 1);
             return answ;
         }
 
         public Character GetChoosen()
         {
-            foreach(var c in player.Board.Characters)
+            foreach(var c in Player.Board.Characters)
             {
                 if (!c.Discarded)
                     return c;
@@ -37,19 +37,84 @@ namespace Core
 
         public Question ChooseQuestion()
         {
-            if (player.Questions == null || player.Questions.Count == 0)
+            if (Player.Questions == null || Player.Questions.Count == 0)
                 return Question.None;
 
             Question choosen = Question.None;
             switch (Level)
             {
                 case AICategory.Random:
-                    choosen = player.Questions[new Random().Next(player.Questions.Count)];
+                    choosen = Player.Questions[new Random().Next(Player.Questions.Count)];
                     break;
                 default:
+                    choosen = GetOptimizedQuestion();
                     break;
             }
             return choosen;
+        }
+
+        public Question GetOptimizedQuestion()
+        {
+            return GetSmallestProbability(GetProbabilities(), false).Question;
+        }
+
+        public Probability GetSmallestProbability(List<Probability> probabilities, bool random)
+        {
+            double smallest = 25;
+            List<Probability> sprobs = new List<Probability>();
+
+            foreach(var p in probabilities)
+            {
+                if(p.Percent < smallest)
+                {
+                    smallest = p.Percent;
+                    sprobs.Clear();
+                }
+                if(p.Percent <= smallest)
+                {
+                    sprobs.Add(p);
+                }
+            }
+
+            return sprobs[(random ? new Random().Next(sprobs.Count) : 0)];
+        }
+
+
+        public struct Probability
+        {
+            public Question Question;
+            public double Percent;
+
+            public Probability(Question q, double p)
+            {
+                Question = q;
+                Percent = p;
+            }
+        }
+
+        public List<Probability> GetProbabilities()
+        {
+            List<Probability> list = new List<Probability>();
+            int left = Player.Remainders;
+
+            foreach(var q in Player.Questions)
+            {
+                int matches = Player.Board.Discard(q, false, false).Count;
+                double prob = OptimizedAlgorithm(matches, left);
+                Probability tuple = new Probability(q, prob);
+                list.Add(tuple);
+            }
+
+            return list;
+        }
+
+        public double OptimizedAlgorithm(int m, int l)
+        {
+            double matches = (double)m;
+            double left = (double)l;
+            double remainders = left - matches;
+            
+            return matches * matches / left + remainders * remainders / left;
         }
     }
 }

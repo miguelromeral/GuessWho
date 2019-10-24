@@ -137,20 +137,26 @@ namespace Core
             current = Players[Turn];
             rival = GetRivalByPlayer(current);
             PrintGame(true);
-            // Make Question
-            Question question = current.Inteligence.ChooseQuestion();
-            if (question == Question.None)
-                goto endmove;
-
-            Logger.WriteToLog(String.Format("{0} is asking {1}.", current, GetFriendlyNameQuestion(question)));
-            var discards = MakeQuestion(current, question);
 
             // Choose selected
             if (current.Inteligence.ShouldDoIAnswer(rival))
             {
                 current.Choosen = current.Inteligence.GetChoosen();
+                Logger.WriteToLog(String.Format("{0} is resolving: {1}.", current, current.Choosen));
+
                 if (current.Choosen.Name == rival.Secret.Name)
                     endgame = true;
+            }
+            else
+            {
+                // Make Question
+                Question question = current.Inteligence.ChooseQuestion();
+                if (question == Question.None)
+                    goto endmove;
+
+                Logger.WriteToLog(String.Format("{0} is asking {1}.", current, GetFriendlyNameQuestion(question)));
+                MakeQuestion(current, question);
+
             }
 
 

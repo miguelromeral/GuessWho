@@ -298,6 +298,8 @@ namespace Core
             return discards;
         }
 
+
+
         internal void DiscardSingle(Character c, bool perform = true)
         {
             if (perform)

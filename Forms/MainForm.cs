@@ -29,7 +29,7 @@ namespace Forms
             AddItemsComboBox(cbUser1);
             cbUser1.SelectedIndex = 0;
             AddItemsComboBox(cbUser2);
-            cbUser2.SelectedIndex = 1;
+            cbUser2.SelectedIndex = 2;
 
             tbUser1.Text = "Player 1";
             tbUser2.Text = "Player 2";
