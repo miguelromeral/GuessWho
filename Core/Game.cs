@@ -155,8 +155,8 @@ namespace Core
                     goto endmove;
 
                 Logger.WriteToLog(String.Format("{0} is asking {1}.", current, GetFriendlyNameQuestion(question)));
-                MakeQuestion(current, question);
-
+                int discards = MakeQuestion(current, question).Count;
+                current.SetDiscards(discards);
             }
 
 

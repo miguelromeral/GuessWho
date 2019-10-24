@@ -15,6 +15,18 @@ namespace Core
         public List<Question> Questions { get; private set; }
         public AI Inteligence { get; private set; }
 
+        public int LastNumer;
+
+        public void SetDiscards(int discards)
+        {
+            int half = (int) (LastNumer / 2);
+            if(discards > half && Inteligence.Level == AICategory.Brave)
+            {
+                Inteligence.Level = AICategory.Clever;
+            }
+            LastNumer = Remainders;
+        }
+
         public int Remainders {
             get {
                 if (Board.Characters == null)
@@ -36,6 +48,7 @@ namespace Core
             Inteligence = new AI(this, level);
             Board = new Board();
             FillQuestions();
+            LastNumer = Board.Characters.Count;
         }
 
         private void FillQuestions()
