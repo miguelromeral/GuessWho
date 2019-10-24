@@ -10,12 +10,14 @@ namespace Core
     {
         public User Player;
         public AICategory Level { get; set; }
+        private Random Seed { get; set; }
 
 
         public AI(User player, AICategory level)
         {
             this.Player = player;
             Level = level;
+            Seed = new Random();
         }
 
 
@@ -39,34 +41,46 @@ namespace Core
         {
             if (Player.Questions == null || Player.Questions.Count == 0)
                 return Question.None;
-
-            var seed = new Random();
-
-            AICategory level = (random ? (AICategory) seed.Next(2, 4) : Level);
+            
+            AICategory level = (random ? (AICategory) Seed.Next(2, 4) : Level);
 
             Question choosen = Question.None;
             switch (level)
             {
-                case AICategory.Clever:
+                case AICategory.Hard:
                     choosen = GetOptimizedQuestion();
+                    break;
+                case AICategory.Medium:
+                    choosen = GetQuestionByPercentage(0.3);
+                    break;
+                case AICategory.Easy:
+                    choosen = GetQuestionByPercentage(0.65);
                     break;
                 case AICategory.Mix:
                     choosen = ChooseQuestion(true);
                     break;
                 case AICategory.Random:
                 default:
-                    choosen = Player.Questions[seed.Next(Player.Questions.Count)];
+                    choosen = Player.Questions[Seed.Next(Player.Questions.Count)];
                     break;
             }
             return choosen;
         }
 
-        public Question GetOptimizedQuestion()
+        private Question GetOptimizedQuestion()
         {
-            return GetSmallestProbability(GetProbabilities(), false).Question;
+            return GetSmallestProbability(GetProbabilities()).Question;
         }
 
-        public Probability GetSmallestProbability(List<Probability> probabilities, bool random)
+        private Question GetQuestionByPercentage(double perc)
+        {
+            var probs = GetProbabilities();
+            int max = Convert.ToInt32(Player.Questions.Count * perc);
+            int index = Seed.Next(0, max);
+            return probs[index].Question;
+        }
+
+        private Probability GetSmallestProbability(List<Probability> probabilities, bool random = true)
         {
             double smallest = 25;
             List<Probability> sprobs = new List<Probability>();
@@ -86,21 +100,8 @@ namespace Core
 
             return sprobs[(random ? new Random().Next(sprobs.Count) : 0)];
         }
-
-
-        public struct Probability
-        {
-            public Question Question;
-            public double Percent;
-
-            public Probability(Question q, double p)
-            {
-                Question = q;
-                Percent = p;
-            }
-        }
-
-        public List<Probability> GetProbabilities()
+        
+        private List<Probability> GetProbabilities()
         {
             List<Probability> list = new List<Probability>();
             int left = Player.Remainders;
@@ -116,7 +117,7 @@ namespace Core
             return list;
         }
 
-        public double OptimizedAlgorithm(int m, int l)
+        private double OptimizedAlgorithm(int m, int l)
         {
             double matches = (double)m;
             double left = (double)l;

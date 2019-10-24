@@ -147,6 +147,8 @@ namespace Core
         Human = 0,
         Mix = 1,
         Random,
-        Clever,
+        Easy,
+        Medium,
+        Hard,
     }
 }
