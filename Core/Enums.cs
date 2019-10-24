@@ -117,7 +117,7 @@ namespace Core
         // Eyes colour
         [Description("Does it have brown eyes?")]
         Brown_EyesColour,
-        [Description("Does it habe blue eyes?")]
+        [Description("Does it have blue eyes?")]
         Blue_EyesColour,
 
         // Skin colour
@@ -149,6 +149,7 @@ namespace Core
         Random,
         Easy,
         Medium,
-        Hard,
+        Brave,
+        Clever,
     }
 }

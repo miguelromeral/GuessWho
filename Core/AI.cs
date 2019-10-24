@@ -47,8 +47,11 @@ namespace Core
             Question choosen = Question.None;
             switch (level)
             {
-                case AICategory.Hard:
-                    choosen = GetOptimizedQuestion();
+                case AICategory.Brave:
+                    choosen = GetQuestionBrave(0.35);
+                    break;
+                case AICategory.Clever:
+                    choosen = GetSmallestProbability(GetProbabilities()).Question;
                     break;
                 case AICategory.Medium:
                     choosen = GetQuestionByPercentage(0.3);
@@ -67,9 +70,12 @@ namespace Core
             return choosen;
         }
 
-        private Question GetOptimizedQuestion()
+        private Question GetQuestionBrave(double perc)
         {
-            return GetSmallestProbability(GetProbabilities()).Question;
+            var probs = GetProbabilities().OrderByDescending(x => x.Percent).ToList();
+            int max = Convert.ToInt32(Player.Questions.Count * perc);
+            int index = Seed.Next(0, max);
+            return probs[index].Question;
         }
 
         private Question GetQuestionByPercentage(double perc)
@@ -101,6 +107,7 @@ namespace Core
             return sprobs[(random ? new Random().Next(sprobs.Count) : 0)];
         }
         
+
         private List<Probability> GetProbabilities()
         {
             List<Probability> list = new List<Probability>();
