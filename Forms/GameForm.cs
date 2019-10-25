@@ -37,31 +37,35 @@ namespace Forms
 
             u1.CreateButtons(lPlayer1);
             u2.CreateButtons(lPlayer2);
-            
+
+            pb1.Visible = false;
+            pb2.Visible = false;
+
             ChangeUserTurn();
 
             UpdatePlayerQuestions(Current);
             Game.Start();
             EnableButtons();
+            DisplayAllPanels();
         }
 
         void EnableButtons()
         {
-            if (Game.Finished)
-            {
-                bPass.Enabled = false;
-                bResolve.Enabled = false;
-                bDiscard.Enabled = false;
-                bAsk.Enabled = false;
-            }
-            else
-            {
-                bool human = Current.Inteligence.Level == AICategory.Human;
-                bPass.Enabled = !human;
-                bResolve.Enabled = human;
-                bDiscard.Enabled = human;
-                bAsk.Enabled = !asked && human;
-            }
+            //if (Game.Finished)
+            //{
+            //    bPass.Enabled = false;
+            //    bResolve.Enabled = false;
+            //    bDiscard.Enabled = false;
+            //    bAsk.Enabled = false;
+            //}
+            //else
+            //{
+            //    bool human = Current.Inteligence.Level == AICategory.Human;
+            //    bPass.Enabled = !human;
+            //    bResolve.Enabled = human;
+            //    bDiscard.Enabled = human;
+            //    bAsk.Enabled = !asked && human;
+            //}
         }
 
         private void bPass_Click(object sender, EventArgs e)
@@ -73,6 +77,7 @@ namespace Forms
                 EnableButtons();
                 if (Game.Finished)
                 {
+                    DisplayAllPanels(true);
                     MessageBox.Show(Game.Winner + " has already won the game!");
                 }
             }
@@ -80,6 +85,7 @@ namespace Forms
             {
                 MessageBox.Show("It is a player move. Select characters to discard.");
             }
+            DisplayAllPanels();
         }
 
         void ChangeUserTurn()
@@ -91,21 +97,20 @@ namespace Forms
             Rival.Count.Text = "Left: " + Rival.Remainders;
 
             lTurnName.Text = "Turn: " + Current.Name;
-            
-            if (Current.Inteligence.Level == AICategory.Human)
-            {
-                // THIS IS OK, but now for debugging i'm allowed to cheat ;)
-                Rival.Panel.Visible = false;
-                Rival.Picture.Visible = false;
 
-                if (Game.TwoHumanPlayers)
-                {
-                    MessageBox.Show("Please, pass the PC to "+Current+" before press OK, please.");
-                }
 
-                Current.Panel.Visible = true;
-                Current.Picture.Visible = true;
-            }
+            //if (!Game.TwoPCPlayers)
+            //{
+            //    // THIS IS OK, but now for debugging i'm allowed to cheat ;)
+            //    Rival.Panel.Visible = false;
+            //    Rival.Picture.Visible = false;
+
+            //    if (Current.Inteligence.Level == AICategory.Human)
+            //    {
+            //        Current.Panel.Visible = true;
+            //        Current.Picture.Visible = true;
+            //    }
+            //}
         }
 
 
@@ -154,20 +159,82 @@ namespace Forms
             Current.RemarkCharacters(Discards);
             asked = true;
             EnableButtons();
+            DisplayAllPanels();
         }
 
         private void bDiscard_Click(object sender, EventArgs e)
         {   
             if (Current.MakeMove(Current.SelectedCharacters()))
             {
-                EnableButtons();
                 NextMove();
-                if (Game.TwoHumanPlayers)
-                    EnableButtons();
             }
             else
             {
                 MessageBox.Show("You have to select, at least, one of your characters.");
+            }
+
+            DisplayAllPanels();
+        }
+
+        void DisplayAllPanels(bool showall = false)
+        {
+            if (showall)
+            {
+                Current.Panel.Visible = true;
+                Current.Picture.Visible = true;
+                Rival.Panel.Visible = true;
+                Rival.Picture.Visible = true;
+                return;
+            }
+
+            CUser user1 = Game.Players[0] as CUser;
+            CUser user2 = Game.Players[1] as CUser;
+
+            // Two humans
+            if(user1.Inteligence.Level == user2.Inteligence.Level && user1.Inteligence.Level == AICategory.Human)
+            {
+                Rival.Panel.Visible = false;
+                Rival.Picture.Visible = false;
+                if (Game.TwoHumanPlayers)
+                {
+                    MessageBox.Show("Please, pass the PC to " + Current + " before press OK, please.");
+                }
+                Current.Panel.Visible = true;
+                Current.Picture.Visible = true;
+            }
+            else
+            {
+                // Two PC
+                if (user1.Inteligence.Level != AICategory.Human && user2.Inteligence.Level != AICategory.Human)
+                {
+                    user1.Panel.Visible = true;
+                    user1.Picture.Visible = true;
+                    user2.Panel.Visible = true;
+                    user2.Picture.Visible = true;
+                }
+                else
+                {
+                    if(Current.Inteligence.Level == AICategory.Human)
+                    {
+                        Current.Panel.Visible = true;
+                        Current.Picture.Visible = true;
+                    }
+                    else
+                    {
+                        Current.Panel.Visible = false;
+                        Current.Picture.Visible = false;
+                    }
+                    if (Rival.Inteligence.Level == AICategory.Human)
+                    {
+                        Rival.Panel.Visible = true;
+                        Rival.Picture.Visible = true;
+                    }
+                    else
+                    {
+                        Rival.Panel.Visible = false;
+                        Rival.Picture.Visible = false;
+                    }
+                }
             }
         }
 
@@ -196,8 +263,7 @@ namespace Forms
 
             if(Current.Choosen.Name == Rival.Secret.Name)
             {
-                Rival.Picture.Visible = true;
-                Rival.Panel.Visible = true;
+                DisplayAllPanels(true);
                 MessageBox.Show("You won the game!");
                 EnableButtons();
             }
@@ -206,6 +272,7 @@ namespace Forms
                 MessageBox.Show("You're wrong. Best luck next time!");
                 EnableButtons();
                 NextMove();
+                DisplayAllPanels();
             }
         }
     }

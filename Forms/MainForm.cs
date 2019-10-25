@@ -37,8 +37,12 @@ namespace Forms
             AddItemsComboBoxUsers();
             cbStart.SelectedIndex = 2;
 
-            bColor1.BackColor = Color.FromArgb(255, 105, 105);
-            bColor2.BackColor = Color.FromArgb(94, 164, 255);
+            Color c1 = Color.FromArgb(255, 105, 105);
+            Color c2 = Color.FromArgb(94, 164, 255);
+            bColor1.BackColor = c1;
+            bColor2.BackColor = c2;
+            pPanel1.BackColor = c1;
+            pPanel2.BackColor = c2;
         }
 
         void AddItemsComboBox(ComboBox combo)
@@ -106,14 +110,7 @@ namespace Forms
 
         private void bColor1_Click(object sender, EventArgs e)
         {
-            DialogResult result = colorDialog1.ShowDialog();
-            // See if user pressed ok.
-            if (result == DialogResult.OK)
-            {
-                // Set form background to the selected color.
-                bColor1.BackColor = colorDialog1.Color;
-                bColor1.Text = colorDialog1.Color.ToString();
-            }
+            SetBackgroundColor(colorDialog1, bColor1, pPanel1);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -123,14 +120,19 @@ namespace Forms
 
         private void bColor2_Click(object sender, EventArgs e)
         {
+            SetBackgroundColor(colorDialog2, bColor2, pPanel2);
+        }
 
-            DialogResult result = colorDialog2.ShowDialog();
+        void SetBackgroundColor(ColorDialog colordialog, Button bcolor, Panel ppanel)
+        {
+            DialogResult result = colordialog.ShowDialog();
             // See if user pressed ok.
             if (result == DialogResult.OK)
             {
                 // Set form background to the selected color.
-                bColor2.BackColor = colorDialog2.Color;
-                bColor2.Text = colorDialog2.Color.ToString();
+                bcolor.BackColor = colordialog.Color;
+                bcolor.Text = colordialog.Color.ToString();
+                ppanel.BackColor = colordialog.Color;
             }
         }
 

@@ -11,12 +11,25 @@ namespace Forms
 {
     public class CGame : Game
     {
-        public bool TwoHumanPlayers {
+        public bool TwoHumanPlayers
+        {
             get
             {
                 foreach (var p in Players)
                 {
                     if (p.Inteligence.Level != AICategory.Human)
+                        return false;
+                }
+                return true;
+            }
+        }
+        public bool TwoPCPlayers
+        {
+            get
+            {
+                foreach (var p in Players)
+                {
+                    if (p.Inteligence.Level == AICategory.Human)
                         return false;
                 }
                 return true;
