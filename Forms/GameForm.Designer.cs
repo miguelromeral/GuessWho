@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class Form1
+    partial class GameForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.bResolve = new System.Windows.Forms.Button();
             this.lCount2 = new System.Windows.Forms.Label();
             this.lCount1 = new System.Windows.Forms.Label();
             this.lTurnName = new System.Windows.Forms.Label();
@@ -43,7 +45,6 @@
             this.lPlayer1 = new System.Windows.Forms.Label();
             this.bPass = new System.Windows.Forms.Button();
             this.infoText = new System.Windows.Forms.TextBox();
-            this.bResolve = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb1)).BeginInit();
@@ -70,6 +71,16 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1754, 920);
             this.mainPanel.TabIndex = 0;
+            // 
+            // bResolve
+            // 
+            this.bResolve.Location = new System.Drawing.Point(413, 858);
+            this.bResolve.Name = "bResolve";
+            this.bResolve.Size = new System.Drawing.Size(302, 46);
+            this.bResolve.TabIndex = 13;
+            this.bResolve.Text = "RESOLVE";
+            this.bResolve.UseVisualStyleBackColor = true;
+            this.bResolve.Click += new System.EventHandler(this.bResolve_Click);
             // 
             // lCount2
             // 
@@ -219,24 +230,17 @@
             this.infoText.Size = new System.Drawing.Size(445, 442);
             this.infoText.TabIndex = 0;
             // 
-            // bResolve
-            // 
-            this.bResolve.Location = new System.Drawing.Point(413, 858);
-            this.bResolve.Name = "bResolve";
-            this.bResolve.Size = new System.Drawing.Size(302, 46);
-            this.bResolve.TabIndex = 13;
-            this.bResolve.Text = "RESOLVE";
-            this.bResolve.UseVisualStyleBackColor = true;
-            this.bResolve.Click += new System.EventHandler(this.bResolve_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1778, 944);
             this.Controls.Add(this.mainPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Guess Who?";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb2)).EndInit();

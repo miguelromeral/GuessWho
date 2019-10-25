@@ -100,7 +100,7 @@ namespace Forms
             else
                 t = 2;
 
-            var f = new Form1(user1, user2, ai1, ai2, bColor1.BackColor, bColor2.BackColor, t);
+            var f = new GameForm(user1, user2, ai1, ai2, bColor1.BackColor, bColor2.BackColor, t);
             f.Show();
         }
 
@@ -157,7 +157,7 @@ namespace Forms
                 else
                 {
                     button.Visible = false;
-                    button.BackColor = Color.Gray;
+                    //button.BackColor = Color.Gray;
                 }
             }
         }

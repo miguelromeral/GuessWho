@@ -11,7 +11,7 @@ using Core;
 
 namespace Forms
 {
-    public partial class Form1 : Form
+    public partial class GameForm : Form
     {
 
         private FLogger Logger;
@@ -20,9 +20,9 @@ namespace Forms
         private CUser Rival;
         private List<Character> Discards;
 
-        bool asked = false;
+        private bool asked { get; set; }
 
-        public Form1(string user1, string user2, Core.AICategory ai1, Core.AICategory ai2, Color c1, Color c2, int t)
+        public GameForm(string user1, string user2, Core.AICategory ai1, Core.AICategory ai2, Color c1, Color c2, int t)
         {
             InitializeComponent();
 
@@ -32,6 +32,8 @@ namespace Forms
             
             CUser u1 = Game.AddPlayer(user1, ai1, c1, pPlayer1, pb1, lCount1);
             CUser u2 = Game.AddPlayer(user2, ai2, c2, pPlayer2, pb2, lCount2);
+
+            this.Text = user1 + " vs. " + user2 + " - Guess Who?";
 
             u1.CreateButtons(lPlayer1);
             u2.CreateButtons(lPlayer2);
@@ -68,6 +70,7 @@ namespace Forms
             {
                 Game.Play_Step();
                 ChangeUserTurn();
+                EnableButtons();
                 if (Game.Finished)
                 {
                     MessageBox.Show(Game.Winner + " has already won the game!");
@@ -77,7 +80,6 @@ namespace Forms
             {
                 MessageBox.Show("It is a player move. Select characters to discard.");
             }
-            EnableButtons();
         }
 
         void ChangeUserTurn()
@@ -92,12 +94,17 @@ namespace Forms
             
             if (Current.Inteligence.Level == AICategory.Human)
             {
-                Current.Panel.Visible = true;
-                Current.Picture.Visible = true;
-
                 // THIS IS OK, but now for debugging i'm allowed to cheat ;)
                 Rival.Panel.Visible = false;
                 Rival.Picture.Visible = false;
+
+                if (Game.TwoHumanPlayers)
+                {
+                    MessageBox.Show("Please, pass the PC to "+Current+" before press OK, please.");
+                }
+
+                Current.Panel.Visible = true;
+                Current.Picture.Visible = true;
             }
         }
 
@@ -153,8 +160,10 @@ namespace Forms
         {   
             if (Current.MakeMove(Current.SelectedCharacters()))
             {
-                NextMove();
                 EnableButtons();
+                NextMove();
+                if (Game.TwoHumanPlayers)
+                    EnableButtons();
             }
             else
             {
@@ -195,8 +204,8 @@ namespace Forms
             else
             {
                 MessageBox.Show("You're wrong. Best luck next time!");
-                NextMove();
                 EnableButtons();
+                NextMove();
             }
         }
     }

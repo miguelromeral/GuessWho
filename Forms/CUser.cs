@@ -14,7 +14,7 @@ namespace Forms
         public Color Color { get; set; }
         public List<CCheckBox> Buttons { get; set; }
 
-        public Form1 Form { get; set; }
+        public GameForm Form { get; set; }
 
         public Panel Panel { get; set; }
 

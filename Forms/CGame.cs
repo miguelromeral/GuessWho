@@ -11,6 +11,19 @@ namespace Forms
 {
     public class CGame : Game
     {
+        public bool TwoHumanPlayers {
+            get
+            {
+                foreach (var p in Players)
+                {
+                    if (p.Inteligence.Level != AICategory.Human)
+                        return false;
+                }
+                return true;
+            }
+        }
+
+
         public CGame(int turn) : base()
         {
             switch (turn)
