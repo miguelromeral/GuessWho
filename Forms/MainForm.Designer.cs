@@ -39,6 +39,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbUser1 = new System.Windows.Forms.ComboBox();
             this.cbUser2 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbStart = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -77,6 +79,7 @@
             this.tbUser1.Name = "tbUser1";
             this.tbUser1.Size = new System.Drawing.Size(239, 26);
             this.tbUser1.TabIndex = 3;
+            this.tbUser1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbUser1_KeyUp);
             // 
             // tbUser2
             // 
@@ -84,6 +87,7 @@
             this.tbUser2.Name = "tbUser2";
             this.tbUser2.Size = new System.Drawing.Size(240, 26);
             this.tbUser2.TabIndex = 4;
+            this.tbUser2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbUser2_KeyUp);
             // 
             // label1
             // 
@@ -110,6 +114,7 @@
             this.cbUser1.Name = "cbUser1";
             this.cbUser1.Size = new System.Drawing.Size(121, 28);
             this.cbUser1.TabIndex = 7;
+            this.cbUser1.SelectedIndexChanged += new System.EventHandler(this.cbUser1_SelectedIndexChanged);
             // 
             // cbUser2
             // 
@@ -118,12 +123,32 @@
             this.cbUser2.Name = "cbUser2";
             this.cbUser2.Size = new System.Drawing.Size(121, 28);
             this.cbUser2.TabIndex = 8;
+            this.cbUser2.SelectedIndexChanged += new System.EventHandler(this.cbUser2_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 402);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(111, 20);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Who will start?";
+            // 
+            // cbStart
+            // 
+            this.cbStart.FormattingEnabled = true;
+            this.cbStart.Location = new System.Drawing.Point(150, 402);
+            this.cbStart.Name = "cbStart";
+            this.cbStart.Size = new System.Drawing.Size(206, 28);
+            this.cbStart.TabIndex = 10;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 450);
+            this.Controls.Add(this.cbStart);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.cbUser2);
             this.Controls.Add(this.cbUser1);
             this.Controls.Add(this.label2);
@@ -134,7 +159,7 @@
             this.Controls.Add(this.bColor1);
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Guess Who?";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -153,5 +178,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbUser1;
         private System.Windows.Forms.ComboBox cbUser2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbStart;
     }
 }

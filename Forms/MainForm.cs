@@ -33,6 +33,10 @@ namespace Forms
 
             tbUser1.Text = "Player 1";
             tbUser2.Text = "Player 2";
+
+            AddItemsComboBoxUsers();
+            cbStart.SelectedIndex = 2;
+
             bColor1.BackColor = Color.FromArgb(255, 105, 105);
             bColor2.BackColor = Color.FromArgb(94, 164, 255);
         }
@@ -44,6 +48,16 @@ namespace Forms
             {
                 combo.Items.Add(l);
             }
+        }
+
+        private string randomTurn = "Randomly";
+
+        void AddItemsComboBoxUsers()
+        {
+            cbStart.Items.Clear();
+            cbStart.Items.Add(tbUser1.Text);
+            cbStart.Items.Add(tbUser2.Text);
+            cbStart.Items.Add(randomTurn);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -75,8 +89,18 @@ namespace Forms
 
             Core.AICategory ai1 = (Core.AICategory) cbUser1.SelectedItem;
             Core.AICategory ai2 = (Core.AICategory) cbUser2.SelectedItem;
-            
-            var f = new Form1(user1, user2, ai1, ai2, bColor1.BackColor, bColor2.BackColor);
+
+            int t = 0;
+
+            string turn = (string) cbStart.SelectedItem;
+            if (tbUser1.Text == turn)
+                t = 0;
+            else if (tbUser2.Text == turn)
+                t = 1;
+            else
+                t = 2;
+
+            var f = new Form1(user1, user2, ai1, ai2, bColor1.BackColor, bColor2.BackColor, t);
             f.Show();
         }
 
@@ -108,6 +132,49 @@ namespace Forms
                 bColor2.BackColor = colorDialog2.Color;
                 bColor2.Text = colorDialog2.Color.ToString();
             }
+        }
+
+        private void cbUser1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cb_SelectedIndexChanged(cbUser1, bColor1);
+        }
+
+        private void cbUser2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cb_SelectedIndexChanged(cbUser2, bColor2);
+        }
+
+
+        private void cb_SelectedIndexChanged(ComboBox combobox, Button button)
+        {
+            if (combobox.SelectedItem != null)
+            {
+                var el = (Core.AICategory)combobox.SelectedItem;
+                if (el == Core.AICategory.Human)
+                {
+                    button.Visible = true;
+                }
+                else
+                {
+                    button.Visible = false;
+                    button.BackColor = Color.Gray;
+                }
+            }
+        }
+
+        private void tbUser1_KeyUp(object sender, KeyEventArgs e)
+        {
+            AddItemsComboBoxUsers();
+        }
+
+        private void tbUser2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AddItemsComboBoxUsers();
+        }
+
+        private void tbUser2_KeyUp(object sender, KeyEventArgs e)
+        {
+            AddItemsComboBoxUsers();
         }
     }
 }

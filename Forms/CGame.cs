@@ -11,9 +11,20 @@ namespace Forms
 {
     public class CGame : Game
     {
-        public CGame() : base()
+        public CGame(int turn) : base()
         {
-
+            switch (turn)
+            {
+                case 0:
+                    break;
+                case 1:
+                    NextMove();
+                    break;
+                case 2:
+                    if (new Random().Next(0, 2) == 1)
+                        NextMove();
+                    break;
+            }
         }
 
         public CUser AddPlayer(string name, AICategory level, Color c, Panel panel, PictureBox picture, Label lcount)

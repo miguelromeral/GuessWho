@@ -22,18 +22,16 @@ namespace Forms
 
         bool asked = false;
 
-        public Form1(string user1, string user2, Core.AICategory ai1, Core.AICategory ai2, Color c1, Color c2)
+        public Form1(string user1, string user2, Core.AICategory ai1, Core.AICategory ai2, Color c1, Color c2, int t)
         {
             InitializeComponent();
 
             Logger = new FLogger(this.infoText);
-            Game = new CGame();
+            Game = new CGame(t);
             Game.Logger = Logger;
-
-            //CUser u1 = Game.AddPlayer(user1, ai1, Color.FromArgb(255, 105, 105), pPlayer1, pb1, lCount1);
+            
             CUser u1 = Game.AddPlayer(user1, ai1, c1, pPlayer1, pb1, lCount1);
             CUser u2 = Game.AddPlayer(user2, ai2, c2, pPlayer2, pb2, lCount2);
-            //CUser u2 = Game.AddPlayer(user2, ai2, Color.FromArgb(94, 164, 255), pPlayer2, pb2, lCount2);
 
             u1.CreateButtons(lPlayer1);
             u2.CreateButtons(lPlayer2);

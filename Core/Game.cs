@@ -117,8 +117,7 @@ namespace Core
         {
             if (!GameReady)
                 return false;
-
-            _turn = 0;
+            
             return true;
         }
 
