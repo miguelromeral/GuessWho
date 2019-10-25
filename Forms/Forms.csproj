@@ -120,6 +120,7 @@
     <Content Include="Images\daniel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\discard.png" />
     <Content Include="Images\eric.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -150,12 +151,15 @@
     <Content Include="Images\max.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\pass.png" />
     <Content Include="Images\paul.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\philippe.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\question.png" />
+    <Content Include="Images\resolve.png" />
     <Content Include="Images\roger.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -38,6 +38,11 @@ namespace Forms
             u1.CreateButtons(lPlayer1);
             u2.CreateButtons(lPlayer2);
 
+            lPlayer1.ForeColor = c1;
+            lCount1.ForeColor = c1;
+            lPlayer2.ForeColor = c2;
+            lCount2.ForeColor = c2;
+
             pb1.Visible = false;
             pb2.Visible = false;
 
@@ -45,27 +50,26 @@ namespace Forms
 
             UpdatePlayerQuestions(Current);
             Game.Start();
-            EnableButtons();
             DisplayAllPanels();
         }
 
         void EnableButtons()
         {
-            //if (Game.Finished)
-            //{
-            //    bPass.Enabled = false;
-            //    bResolve.Enabled = false;
-            //    bDiscard.Enabled = false;
-            //    bAsk.Enabled = false;
-            //}
-            //else
-            //{
-            //    bool human = Current.Inteligence.Level == AICategory.Human;
-            //    bPass.Enabled = !human;
-            //    bResolve.Enabled = human;
-            //    bDiscard.Enabled = human;
-            //    bAsk.Enabled = !asked && human;
-            //}
+            if (Game.Finished)
+            {
+                bPass.Enabled = false;
+                bResolve.Enabled = false;
+                bDiscard.Enabled = false;
+                bAsk.Enabled = false;
+            }
+            else
+            {
+                bool human = Current.Inteligence.Level == AICategory.Human;
+                bPass.Enabled = !human;
+                bResolve.Enabled = human;
+                bDiscard.Enabled = human;
+                bAsk.Enabled = !asked && human;
+            }
         }
 
         private void bPass_Click(object sender, EventArgs e)
@@ -74,10 +78,10 @@ namespace Forms
             {
                 Game.Play_Step();
                 ChangeUserTurn();
-                EnableButtons();
                 if (Game.Finished)
                 {
                     DisplayAllPanels(true);
+                    EnableButtons();
                     MessageBox.Show(Game.Winner + " has already won the game!");
                 }
             }
@@ -93,24 +97,8 @@ namespace Forms
             Current = Game.Players[Game.Turn] as CUser;
             Rival = Game.GetRivalByPlayer(Current) as CUser;
 
-            Current.Count.Text = "Left: " + Current.Remainders;
-            Rival.Count.Text = "Left: " + Rival.Remainders;
-
-            lTurnName.Text = "Turn: " + Current.Name;
-
-
-            //if (!Game.TwoPCPlayers)
-            //{
-            //    // THIS IS OK, but now for debugging i'm allowed to cheat ;)
-            //    Rival.Panel.Visible = false;
-            //    Rival.Picture.Visible = false;
-
-            //    if (Current.Inteligence.Level == AICategory.Human)
-            //    {
-            //        Current.Panel.Visible = true;
-            //        Current.Picture.Visible = true;
-            //    }
-            //}
+            Current.Count.Text = "" + Current.Remainders;
+            Rival.Count.Text = "" + Rival.Remainders;
         }
 
 
@@ -148,7 +136,7 @@ namespace Forms
             }
 
             Current.Questions.Remove(question);
-            Game.PrintGame(true);
+            //Game.PrintGame(true);
 
             Logger.WriteToLog(String.Format("{0} is asking {1}.", Current, Core.Game.GetFriendlyNameQuestion(question)));
 
@@ -159,7 +147,6 @@ namespace Forms
             Current.RemarkCharacters(Discards);
             asked = true;
             EnableButtons();
-            DisplayAllPanels();
         }
 
         private void bDiscard_Click(object sender, EventArgs e)
@@ -186,12 +173,9 @@ namespace Forms
                 Rival.Picture.Visible = true;
                 return;
             }
-
-            CUser user1 = Game.Players[0] as CUser;
-            CUser user2 = Game.Players[1] as CUser;
-
+            
             // Two humans
-            if(user1.Inteligence.Level == user2.Inteligence.Level && user1.Inteligence.Level == AICategory.Human)
+            if(Rival.Inteligence.Level == Current.Inteligence.Level && Rival.Inteligence.Level == AICategory.Human)
             {
                 Rival.Panel.Visible = false;
                 Rival.Picture.Visible = false;
@@ -201,16 +185,23 @@ namespace Forms
                 }
                 Current.Panel.Visible = true;
                 Current.Picture.Visible = true;
+
+                EnableButtons();
             }
             else
             {
                 // Two PC
-                if (user1.Inteligence.Level != AICategory.Human && user2.Inteligence.Level != AICategory.Human)
+                if (Current.Inteligence.Level != AICategory.Human && Rival.Inteligence.Level != AICategory.Human)
                 {
-                    user1.Panel.Visible = true;
-                    user1.Picture.Visible = true;
-                    user2.Panel.Visible = true;
-                    user2.Picture.Visible = true;
+                    Current.Panel.Visible = true;
+                    Current.Picture.Visible = true;
+                    Rival.Panel.Visible = true;
+                    Rival.Picture.Visible = true;
+
+                    bPass.Enabled = true;
+                    bResolve.Enabled = false;
+                    bDiscard.Enabled = false;
+                    bAsk.Enabled = false;
                 }
                 else
                 {
@@ -234,6 +225,7 @@ namespace Forms
                         Rival.Panel.Visible = false;
                         Rival.Picture.Visible = false;
                     }
+                    EnableButtons();
                 }
             }
         }
@@ -264,13 +256,12 @@ namespace Forms
             if(Current.Choosen.Name == Rival.Secret.Name)
             {
                 DisplayAllPanels(true);
-                MessageBox.Show("You won the game!");
                 EnableButtons();
+                MessageBox.Show("You won the game!");
             }
             else
             {
                 MessageBox.Show("You're wrong. Best luck next time!");
-                EnableButtons();
                 NextMove();
                 DisplayAllPanels();
             }

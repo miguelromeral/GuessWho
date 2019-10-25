@@ -89,7 +89,7 @@ namespace Forms
 
             current = Players[Turn];
             rival = GetRivalByPlayer(current);
-            PrintGame(true);
+            //PrintGame(true);
 
             // Choose selected
             if (current.Inteligence.ShouldDoIAnswer(rival))
